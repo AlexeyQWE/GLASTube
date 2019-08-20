@@ -14,9 +14,9 @@ public class WebController {
         return "indexStart";
     }
     @RequestMapping("/sign_up")
-    public String s(Model model) {
+    public String indexSignUp(Model model) {
         model.addAttribute("name", "Sign Up");
 
-        return "s";
+        return "indexSignUp";
     }
 }
