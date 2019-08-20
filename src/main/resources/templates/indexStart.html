@@ -1,0 +1,19 @@
+<!DOCTYPE>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <script src="http://code.jquery.com/jquery-3.4.1.js"> </script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    </head>
+    <script  type="text/javascript">
+        function signUp() {
+            location.href = '/sign_up';
+        }
+    </script>
+    <body>
+        <b>
+            <p align="center" th:text="${name}"> </p>
+        </b>
+        <button type="button" onclick = "signUp()">Sign Up</button><br><br>
+        <button type="button" onclick="signIn()">Sign In</button><br><br>
+    </body>
+</html>
