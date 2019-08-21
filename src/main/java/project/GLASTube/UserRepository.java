@@ -2,4 +2,8 @@ package project.GLASTube;
 
 import org.springframework.data.repository.CrudRepository;
 
-interface UserRepository extends CrudRepository <User, Integer> {}
+import java.util.List;
+
+interface UserRepository extends CrudRepository <User, Integer> {
+    User findByLogin(String login);
+}
