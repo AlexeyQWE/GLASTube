@@ -35,9 +35,9 @@ public class WebController {
         model.addAttribute("name", "Home Page");
         User user = crudRep.findByLogin(login);
 
-        if (user.getLogin().equals(login) && user.getPassword().equals(password))
-            return  "indexMainPage";
-
-        return null;
+        if (user != null && user.getPassword().equals(password)) {
+            return "indexMainPage";
+        }
+        return "indexSignIn";
     }
 }
