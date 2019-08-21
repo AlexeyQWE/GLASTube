@@ -1,0 +1,20 @@
+<!DOCTYPE>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <script src="http://code.jquery.com/jquery-3.4.1.js"> </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+</head>
+    <script type="text/javascript">
+         function autorisation() {
+              location.href = "/sign_in/" + document.getElementById("login").value + "/" + document.getElementById("password").value;
+        }
+     </script>
+    <body>
+        <b>
+            <p align="center" th:text="${name}"> </p>
+        </b>
+        <br><br/><input id="login" type = "text"/> - login<br/>
+        <br><br/><input id="password" type = "text"/> - password<br/>
+        <button type="button" onclick="autorisation()">Sign In</button>
+    </body>
+</html>
