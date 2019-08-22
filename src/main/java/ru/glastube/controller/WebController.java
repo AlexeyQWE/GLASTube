@@ -5,6 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import ru.glas***.entity.Comments;
 import ru.glas***.entity.User;
 import ru.glas***.repository.UserRepository;
 
@@ -41,5 +42,11 @@ public class WebController {
             return "indexMainPage";
         }
         return "indexSignIn";
+    }
+    @RequestMapping("/test")
+    public String test(Model model)
+    {
+        model.addAttribute("comment",new Comments());
+        return "comments";
     }
 }
