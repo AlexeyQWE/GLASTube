@@ -1,14 +1,31 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
     <head>
+        <script src="http://code.jquery.com/jquery-3.4.1.js"> </script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
         <meta charset="UTF-8">
         <title>GLASTube</title>
     </head>
+    <script type="text/javascript">
+         function allUsers() {
+            $.get("/get_users",
+                function(data){
+                    var str = "";
+                    for(var i = 0; i < data.length; i++) {
+                        console.log(data[i]);
+                        str += data[i].id + ")" + data[i].nickname + "<br>";
+                    }
+                    $("html").html(str);
+                }
+            );
+        }
+    </script>
     <body>
         <b>
             <p align="center" th:text="${name}"> </p>
         </b>
-        <button type="button" onclick="allUsers">Показать всех пользователей</button> <br>
-        <button type="button" onclick="myVideos">Мои видео</button>
+        <div class="users"></div>
+        <button type="button" onclick=allUsers()>Показать всех пользователей</button> <br>
+        <button type="button" onclick="myVideos()">Мои видео</button>
     </body>
 </html>

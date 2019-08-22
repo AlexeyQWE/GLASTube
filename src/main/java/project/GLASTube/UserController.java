@@ -1,7 +1,6 @@
 package project.GLASTube;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.repository.CrudRepository;
 import org.springframework.web.bind.annotation.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -16,5 +15,12 @@ public class UserController {
     public User signUp(@PathVariable("nickname") String nickname, @PathVariable("login") String login, @PathVariable("password") String password) {
 
         return crudRep.save(new User(nickname, login, password));
+    }
+
+    @RequestMapping("/get_users")
+    public List<User> getUsers() {
+        List<User> users = new ArrayList<>();
+        crudRep.findAll().forEach(users::add);
+        return users;
     }
 }

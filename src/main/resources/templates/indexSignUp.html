@@ -6,7 +6,7 @@
     </head>
     <script type="text/javascript">
          function register() {
-            $.get("sign_up/" + document.getElementById("nickname").value + "/" + document.getElementById("login").value
+            $.get("/sign_up/" + document.getElementById("nickname").value + "/" + document.getElementById("login").value
                 + "/" + document.getElementById("password").value,
                 function(data){
                     console.log(data);
