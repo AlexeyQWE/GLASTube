@@ -13,11 +13,13 @@ public class User {
     @Getter @Setter private String nickname;
     @Getter @Setter private String login;
     @Getter @Setter private String password;
+    @Getter @Setter private Integer enabled;
 
-    public User(String nickname, String login, String password) {
+    public User(String nickname, String login, String password, Integer enabled) {
         //this.id = id;
         this.nickname = nickname;
         this.login = login;
         this.password = password;
+        this.enabled = enabled;
     }
 }
