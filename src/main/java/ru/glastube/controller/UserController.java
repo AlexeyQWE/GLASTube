@@ -1,6 +1,7 @@
 package ru.glas***.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.StandardPasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 import ru.glas***.entity.User;
 import ru.glas***.repository.UserRepository;
@@ -14,10 +15,10 @@ public class UserController {
     @Autowired
     private UserRepository crudRep;
 
-    @RequestMapping("/sign_up/{nickname}/{login}/{password}")
-    public User signUp(@PathVariable("nickname") String nickname, @PathVariable("login") String login, @PathVariable("password") String password) {
-
-        return crudRep.save(new User(nickname, login, password));
+    @RequestMapping("/register")
+    public User signUp(@RequestParam("nickname") String nickname, @RequestParam("login") String login, @RequestParam("password") String password) {
+        password = new StandardPasswordEncoder().encode(password);
+        return crudRep.save(new User(nickname, login, password, 1));
     }
 
     @RequestMapping("/get_users")
