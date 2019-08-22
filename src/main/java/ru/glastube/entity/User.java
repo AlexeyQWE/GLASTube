@@ -1,4 +1,4 @@
-package ru.glastube;
+package ru.glastube.entity;
 
 import lombok.*;;
 import javax.persistence.*;
@@ -14,7 +14,7 @@ public class User {
     @Getter @Setter private String login;
     @Getter @Setter private String password;
 
-    User(String nickname, String login, String password) {
+    public User(String nickname, String login, String password) {
         //this.id = id;
         this.nickname = nickname;
         this.login = login;
