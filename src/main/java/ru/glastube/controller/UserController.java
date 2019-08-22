@@ -14,6 +14,7 @@ public class UserController {
     @Autowired
     private UserRepository crudRep;
 
+
     @RequestMapping("/sign_up/{nickname}/{login}/{password}")
     public User signUp(@PathVariable("nickname") String nickname, @PathVariable("login") String login, @PathVariable("password") String password) {
 
@@ -26,4 +27,5 @@ public class UserController {
         crudRep.findAll().forEach(users::add);
         return users;
     }
+
 }
