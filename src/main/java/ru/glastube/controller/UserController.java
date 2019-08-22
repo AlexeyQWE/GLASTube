@@ -19,7 +19,6 @@ public class UserController {
     public User signUp(@RequestParam("nickname") String nickname, @RequestParam("login") String login, @RequestParam("password") String password) {
         password = new StandardPasswordEncoder().encode(password);
         return crudRep.save(new User(nickname, login, password, 1));
-    }
 
     @RequestMapping("/get_users")
     public List<User> getUsers() {
@@ -27,4 +26,5 @@ public class UserController {
         crudRep.findAll().forEach(users::add);
         return users;
     }
+
 }
