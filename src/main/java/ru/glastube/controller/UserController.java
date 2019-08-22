@@ -16,7 +16,7 @@ public class UserController {
     private UserRepository crudRep;
 
     @RequestMapping("/register")
-    public User signUp(@RequestParam("nickname") String nickname, @RequestParam("login") String login, @RequestParam("password") String password) {
+    public User register(@RequestParam("nickname") String nickname, @RequestParam("login") String login, @RequestParam("password") String password) {
         password = new StandardPasswordEncoder().encode(password);
         return crudRep.save(new User(nickname, login, password, 1));
     }
