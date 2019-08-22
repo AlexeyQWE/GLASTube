@@ -1,7 +1,10 @@
-package ru.glastube;
+package ru.glastube.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import ru.glastube.entity.User;
+import ru.glastube.repository.UserRepository;
+
 import java.util.ArrayList;
 import java.util.List;
 
