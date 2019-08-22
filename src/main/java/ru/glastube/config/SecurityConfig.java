@@ -12,6 +12,7 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.crypto.password.StandardPasswordEncoder;
 
 import javax.sql.DataSource;
 import java.io.*;
@@ -29,8 +30,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
         auth.jdbcAuthentication().dataSource(dataSource)
                 .usersByUsernameQuery(
-                        "select login as username, password, nickname from user where login like 'pom'")
-                .authoritiesByUsernameQuery("select login as username, password, nickname from user where login like 'pom'");
+                        "select user.login as username, user.password as password, user.enabled from user where user.login like ?")
+                .authoritiesByUsernameQuery("select user.login as username, user.password as password, user.enabled from user where user.login like ?")
+                .passwordEncoder(new StandardPasswordEncoder());
 
     }
 
@@ -42,27 +44,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
             .antMatchers("/bye").access("hasRole('ROLE_USER')")
             .and()
             .formLogin()
-            .defaultSuccessUrl("/");
+            .defaultSuccessUrl("/sign_in");
 
 
 
     }
-
-    @Bean
-    public PasswordEncoder passwordEncoder() {
-        return new PasswordEncoder() {
-            @Override
-            public String encode(CharSequence rawPassword) {
-                System.out.println(rawPassword.toString());
-                return rawPassword.toString();
-            }
-
-            @Override
-            public boolean matches(CharSequence rawPassword, String encodedPassword) {
-                System.out.println("Matches = " + rawPassword.toString() + " " + encodedPassword);
-                return true;
-            }
-        };
-    }
-
 }

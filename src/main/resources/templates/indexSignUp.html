@@ -6,11 +6,11 @@
     </head>
     <script type="text/javascript">
          function register() {
-            $.get("/sign_up/" + document.getElementById("nickname").value + "/" + document.getElementById("login").value
-                + "/" + document.getElementById("password").value,
+            $.get("/register?nickname=" + document.getElementById("nickname").value + "&login=" + document.getElementById("login").value
+                + "&password=" + document.getElementById("password").value,
                 function(data){
                     console.log(data);
-                    location.href = "/sign_in/" + document.getElementById("login").value + "/" + document.getElementById("password").value;
+                    location.href = "/sign_in";
                 }
 
             );
