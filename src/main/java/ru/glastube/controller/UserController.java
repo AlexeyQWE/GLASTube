@@ -1,7 +1,10 @@
-package ru.glas***;
+package ru.glas***.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import ru.glas***.entity.User;
+import ru.glas***.repository.UserRepository;
+
 import java.util.ArrayList;
 import java.util.List;
 
