@@ -1,4 +1,4 @@
-package ru.glas***;
+package ru.glas***.config;
 
 import org.apache.commons.dbcp.BasicDataSource;
 import org.springframework.beans.factory.annotation.Autowired;
