@@ -1,4 +1,4 @@
-package project.GLASTube;
+package ru.glas***;
 
 import lombok.*;;
 import javax.persistence.*;
