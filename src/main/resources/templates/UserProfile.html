@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <script src="http://code.jquery.com/jquery-3.4.1.js"> </script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+        <meta charset="UTF-8">
+        <title>GLASTube</title>
+    </head>
+    <script>
+        function signOut() {
+            location.href = '/';
+        }
+    </script>
+    <body>
+        <b>
+            <p align="center" th:text="${user.getNickname()}+ ' Page'"> </p>
+        </b>
+        <div class="users"></div>
+        <button th:text="${user.getNickname()} + ' ' + Videos" th:onclick="userVideo()"></button>
+        <button type="button" onclick="signOut()">Sign out</button>
+    </body>
+</html>
