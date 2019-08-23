@@ -10,16 +10,17 @@
                 + "&password=" + document.getElementById("password").value,
                 function(data){
                     console.log(data);
-                    location.href = "/sign_in";
+                    if (data != "") {
+                        location.href = "/sign_in";
+                    } else alert("This login already exist!");
                 }
-
             );
         }
     </script>
     <body>
          <b>
              <p align="center" th:text="${name}"> </p>
-          </b>
+         </b>
         <br><br/><input id="nickname" type = "text"/> - nickname<br/>
         <br><br/><input id="login" type = "text"/> - login<br/>
         <br><br/><input id="password" type = "text"/> - password<br/>
