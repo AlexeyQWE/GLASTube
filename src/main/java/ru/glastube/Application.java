@@ -1,4 +1,4 @@
-package project.GLASTube;
+package ru.glastube;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
