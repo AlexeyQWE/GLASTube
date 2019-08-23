@@ -18,8 +18,7 @@ public class UserController {
     @RequestMapping("/register")
     public User register(@RequestParam("nickname") String nickname, @RequestParam("login") String login, @RequestParam("password") String password) {
         password = new StandardPasswordEncoder().encode(password);
-        User user = null;
-        user = crudRep.findByLogin(login);
+        User user = crudRep.findByLogin(login);
 
         if (user != null) {
             return null;
