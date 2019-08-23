@@ -22,9 +22,7 @@ public class UserController {
         user = crudRep.findByLogin(login);
 
         if (user != null) {
-            //System.out.println("This login already exist!");
             return null;
-
         }
         return crudRep.save(new User(nickname, login, password, 1));
     }
