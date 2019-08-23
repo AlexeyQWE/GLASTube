@@ -9,6 +9,7 @@ import ru.glas***.entity.Comments;
 import ru.glas***.repository.CommentRepository;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @RestController
@@ -26,8 +27,9 @@ public class CommentsController {
     }
 
     @RequestMapping("/add_comment")
-    public Comments addComment(@RequestParam("id_user") Integer id_user, @RequestParam("date") Long date,
+    public Comments addComment(@RequestParam("id_user") Integer id_user,
                                @RequestParam("text") String text){
+        Date date = new java.util.Date();
         System.out.println(id_user + " " + date + " " + text);
         return commentRepository.save(new Comments(id_user, date, text));
     }
