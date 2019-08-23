@@ -19,6 +19,9 @@
                 }
             );
         }
+        function signOut() {
+            location.href = '/';
+        }
     </script>
     <body>
         <b>
@@ -26,6 +29,7 @@
         </b>
         <div class="users"></div>
         <button type="button" onclick=allUsers()>Показать всех пользователей</button> <br>
-        <button type="button" onclick="myVideos()">Мои видео</button>
+        <button type="button" onclick=myVideos()>Мои видео</button>
+        <button type="button" onclick="signOut()">Sign out</button>
     </body>
 </html>
