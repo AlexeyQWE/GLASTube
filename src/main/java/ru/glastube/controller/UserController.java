@@ -16,8 +16,13 @@ public class UserController {
     private UserRepository crudRep;
 
     @RequestMapping("/register")
-    public User signUp(@RequestParam("nickname") String nickname, @RequestParam("login") String login, @RequestParam("password") String password) {
+    public User register(@RequestParam("nickname") String nickname, @RequestParam("login") String login, @RequestParam("password") String password) {
         password = new StandardPasswordEncoder().encode(password);
+        User user = crudRep.findByLogin(login);
+
+        if (user != null) {
+            return null;
+        }
         return crudRep.save(new User(nickname, login, password, 1));
     }
 
@@ -27,4 +32,5 @@ public class UserController {
         crudRep.findAll().forEach(users::add);
         return users;
     }
+
 }
