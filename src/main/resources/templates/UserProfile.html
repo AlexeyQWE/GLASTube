@@ -8,7 +8,9 @@
     </head>
     <script>
         function signOut() {
-            location.href = '/';
+            if (confirm("Выйти из аккаунта?")) {
+                location.href = '/';
+            }
         }
     </script>
     <body>
@@ -16,7 +18,7 @@
             <p align="center" th:text="${user.getNickname()}+ ' Page'"> </p>
         </b>
         <div class="users"></div>
-        <button th:text="${user.getNickname()} + ' ' + Videos" th:onclick="userVideo()"></button>
-        <button type="button" onclick="signOut()">Sign out</button>
+        <button th:text="${user.getNickname()} + ' ' + Видео" th:onclick="userVideo()"></button>
+        <button type="button" onclick="signOut()">Выйти</button>
     </body>
 </html>
