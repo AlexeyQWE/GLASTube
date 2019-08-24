@@ -23,7 +23,9 @@
             );
         }
         function signOut() {
-            location.href = '/';
+            if (confirm("Выйти из аккаунта?")) {
+                location.href = '/';
+            }
         }
     </script>
     <body>
@@ -54,8 +56,8 @@
             </div>
         </nav>
         <div class="users"></div>
-        <button type="button" onclick=allUsers()>Users List</button> <br>
-        <button type="button" onclick=myVideos()>My videos</button>
-        <button type="button" onclick="signOut()">Sign out</button>
+        <button type="button" onclick=allUsers()>Список пользователей</button> <br>
+        <button type="button" onclick=myVideos()>Мои видео</button>
+        <button type="button" onclick="signOut()">Выйти</button>
     </body>
 </html>
