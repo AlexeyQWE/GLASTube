@@ -35,6 +35,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
             .antMatchers("/hello").permitAll()
             .and()
             .formLogin()
-            .defaultSuccessUrl("/sign_in");
+            .defaultSuccessUrl("/");
     }
 }
