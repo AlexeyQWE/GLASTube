@@ -40,34 +40,58 @@ public class WebController {
     }
 
     @RequestMapping(value = "/signin_myprofile", method = RequestMethod.GET)
-    public String signInMyProfile() {
+    public ModelAndView signInMyProfile() {
         ModelAndView model = new ModelAndView();
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         if (!(auth instanceof AnonymousAuthenticationToken)) {
             UserDetails userDetail = (UserDetails) auth.getPrincipal();
-            return "indexMainPage";
+            model.addObject("nickname", userDetail.getUsername());
+            System.out.println(userDetail.getUsername());
+//            model.addObject("myprofile", "My profile");
+//            model.addObject("signout", "Sign out");
+            model.setViewName("indexMainPage");
+            return model;
         } else {
-            return "Login";
+            model.setViewName("Login");
+            return model;
         }
     }
 
-    @RequestMapping(value = "/login", method = RequestMethod.GET)
-    public ModelAndView login(@RequestParam(value = "error", required = false) String error,
-                              @RequestParam(value = "logout", required = false) String logout) {
-
+    @RequestMapping(value = "/user_profile", method = RequestMethod.GET)
+    public ModelAndView userProfile() {
         ModelAndView model = new ModelAndView();
-        if (error != null) {
-            model.addObject("error", "Invalid username and password!");
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        if (!(auth instanceof AnonymousAuthenticationToken)) {
+            UserDetails userDetail = (UserDetails) auth.getPrincipal();
+            model.addObject("nickname", userDetail.getUsername());
+            System.out.println(userDetail.getUsername());
+            model.addObject("signoin_myprofile", "My profile");
+            model.addObject("signout_signup", "Sign out");
+            //return "Us";
+        } else {
+           // return "Login";
+            model.addObject("signin_myprofile", "Sign in");
+            model.addObject("signup_signout", "Sign up");
         }
-
-        if (logout != null) {
-            model.addObject("msg", "You've been logged out successfully.");
-        }
-        model.setViewName("login");
-
+        model.setViewName("UserProfile");
         return model;
-
     }
+
+//    @RequestMapping(value = "/my_profile", method = RequestMethod.GET)
+//    public String myProfile() {
+//        ModelAndView model = new ModelAndView();
+//        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+//        if (!(auth instanceof AnonymousAuthenticationToken)) {
+//            UserDetails userDetail = (UserDetails) auth.getPrincipal();
+//            model.addObject("nickname", userDetail.getUsername());
+//            System.out.println(userDetail.getUsername());
+//            model.addObject("myprofile", "My profile");
+//            model.addObject("signout", "Sign out");
+//            return "indexMainPage";
+//        } else {
+//            return "Login";
+//        }
+//    }
 
     @RequestMapping("/sign_up")
     public String indexSignUp(Model model) {
