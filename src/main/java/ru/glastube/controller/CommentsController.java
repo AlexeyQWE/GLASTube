@@ -29,8 +29,10 @@ public class CommentsController {
     @RequestMapping("/add_comment")
     public Comments addComment(@RequestParam("id_user") Integer id_user,
                                @RequestParam("text") String text){
-        Date date = new java.util.Date();
-        System.out.println(id_user + " " + date + " " + text);
-        return commentRepository.save(new Comments(id_user, date, text));
+        String date = new java.util.Date().toString();
+        String [] temp = date.split(" ");
+        String new_date = temp[2] + " " + temp[1] + " " + temp[5] + " " + temp[3];
+        System.out.println(id_user + " " + new_date + " " + text);
+        return commentRepository.save(new Comments(id_user, new_date, text));
     }
 }

@@ -18,7 +18,7 @@
         });
     });
 
-    function addComment(){
+    function addComment(form){
         //var text = document.getElementById("comment").value;
         $.get("/add_comment?id_user=123&date=1235726&text=" + document.getElementById("comment").value,function(data){
             $.get("/all_comments", function(data){
@@ -39,6 +39,6 @@
 <body>
     <div class="comments"></div>
     <input id="comment" type="text"><br>
-    <button type="button" onclick="addComment()">Добавить комментарий</button>
+    <button type="button" onclick="addComment(this.form)">Добавить комментарий</button>
 </body>
 </html>
