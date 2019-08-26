@@ -16,7 +16,6 @@ public class User {
     @Getter @Setter private Integer enabled;
 
     public User(String nickname, String login, String password, Integer enabled) {
-        //this.id = id;
         this.nickname = nickname;
         this.login = login;
         this.password = password;
