@@ -8,20 +8,17 @@
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
         <meta charset="UTF-8">
     </head>
-
     <script type="text/javascript">
         $(document).ready(function() {
             $.get("/get_users",
                 function(data){
                     var str = "<ul id=\"navAccordion\" class=\"navbar-nav mr-auto sidenav\">";
                     for(var i = 0; i < data.length; i++) {
-                        console.log(data[i]);
                         str += "<li class=\"nav-item\">" +
-                               "<a class=\"nav-link\" href=\"#link-1\" style=\"font-color:red\">" +
+                               "<a class=\"nav-link\" href=\"/user_profile?nickname=" + data[i].nickname + "\">" +
                                data[i].nickname + "</a></li>";
                     }
                     str += "</ul>";
-                    console.log(str);
                     $(".users").html(str);
                 }
             );
@@ -34,7 +31,7 @@
         }
     </script>
     <body>
-    <nav class="navbar navbar-dark shadow-sm sticky-top" style="background-color:#252a37">
+    <nav class="navbar shadow-sm sticky-top" style="background-color:white;opacity:0.9">
         <div class="container-fluid">
             <div class="col">
                 <a class="navbar-brand" href="/">
@@ -61,17 +58,19 @@
         </div>
     </nav>
 <!--    <b>-->
-<!--        <p align="center" th:text="${name}"> </p>-->
+<!--        <p align="center" th:text="${name}"> </p> #252a37-->
 <!--    </b>-->
     <div class="blog">
         <div class="container-fluid">
             <div class="row">
-                <nav class="navmenu navmenu-default" style="background-color:rgba(0,0,0,.03);font-size:0.9rem;text-align:center">
+                <div class="col-1" style="margin-left:-10px">
+                <nav class="navmenu navmenu-default" style="position:fixed;background-color:rgba(0,0,0,.03);font-size:0.9rem;">
                     <a class="navbar-brand" style="margin-left:10;font-size:1rem">Пользователи сайта</a><br>
                     <!-- Пункты вертикального меню -->
                     <div class="users"></div>
                 </nav>
-                <div class="col" style="margin-top:100">
+                </div>
+                <div class="col" style="margin-top:100;margin-left:40px">
                     <div class="card">
                         <div class="card-img">
                             <img src="images/posts/polit.jpg" class="img-fluid">
