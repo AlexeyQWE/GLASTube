@@ -9,20 +9,6 @@
         <meta charset="UTF-8">
     </head>
     <script type="text/javascript">
-        $(document).ready(function() {
-            $.get("/get_users",
-                function(data){
-                    var str = "<ul id=\"navAccordion\" class=\"navbar-nav mr-auto sidenav\">";
-                    for(var i = 0; i < data.length; i++) {
-                        str += "<li class=\"nav-item\">" +
-                               "<a class=\"nav-link\" href=\"/user_profile?login=" + data[i].login + "\">" +
-                               data[i].login + "</a></li>";
-                    }
-                    str += "</ul>";
-                    $(".users").html(str);
-                }
-            );
-        })
         function signUp() {
             location.href = '/sign_up';
         }
@@ -64,13 +50,6 @@
     <div class="blog">
         <div class="container-fluid">
             <div class="row">
-                <div class="col-1" style="margin-left:-10px">
-                <nav class="navmenu navmenu-default" style="position:fixed;background-color:rgba(0,0,0,.03);font-size:0.9rem;">
-                    <a class="navbar-brand" style="margin-left:10;font-size:1rem">Пользователи сайта</a><br>
-                    <!-- Пункты вертикального меню -->
-                    <div class="users"></div>
-                </nav>
-                </div>
                 <div class="col" style="margin-top:100;margin-left:40px">
                     <div class="card">
                         <div class="card-img">
