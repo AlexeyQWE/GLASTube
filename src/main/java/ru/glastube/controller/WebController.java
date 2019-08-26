@@ -20,11 +20,12 @@ public class WebController {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         if (!(auth instanceof AnonymousAuthenticationToken)) {
             UserDetails userDetail = (UserDetails) auth.getPrincipal();
-            model.addObject("username", userDetail.getUsername());
+            model.addObject("login", userDetail.getUsername());
             model.addObject("signin_myprofile", "My profile");
             model.addObject("signup_signout", "Sign out");
+            model.addObject("settings", "Settings");
         } else {
-            model.addObject("username", ".O.");
+            model.addObject("login", ".O.");
             model.addObject("signin_myprofile", "Sign in");
             model.addObject("signup_signout", "Sign up");
         }
@@ -38,11 +39,24 @@ public class WebController {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         if (!(auth instanceof AnonymousAuthenticationToken)) {
             UserDetails userDetail = (UserDetails) auth.getPrincipal();
-            model.addObject("nickname", userDetail.getUsername());
+            model.addObject("login", userDetail.getUsername());
             System.out.println(userDetail.getUsername());
-//            model.addObject("myprofile", "My profile");
-//            model.addObject("signout", "Sign out");
             model.setViewName("indexMainPage");
+            return model;
+        } else {
+            model.setViewName("Login");
+            return model;
+        }
+    }
+    @RequestMapping(value = "/settings", method = RequestMethod.GET)
+    public ModelAndView privatePage() {
+        ModelAndView model = new ModelAndView();
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        if (!(auth instanceof AnonymousAuthenticationToken)) {
+            UserDetails userDetail = (UserDetails) auth.getPrincipal();
+            model.addObject("login", userDetail.getUsername());
+            System.out.println(userDetail.getUsername());
+            model.setViewName("settings");
             return model;
         } else {
             model.setViewName("Login");
@@ -57,11 +71,11 @@ public class WebController {
         return "indexSignUp";
     }
 
-    @RequestMapping("/sign_in")
-    public String indexMainPage(Model model) {
-        model.addAttribute("name", "Home Page");
-        return "indexMainPage";
-    }
+//    @RequestMapping("/sign_in")
+//    public String indexMainPage(Model model) {
+//        model.addAttribute("name", "Home Page");
+//        return "indexMainPage";
+//    }
 
     @RequestMapping("/test")
     public String test(Model model) {
