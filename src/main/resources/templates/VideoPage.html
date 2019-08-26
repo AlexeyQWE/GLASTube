@@ -1,15 +1,15 @@
 <!DOCTYPE>
 <html xmlns:th="http://www.thymeleaf.org">
     <head>
-        <script type="text/javascript" th:src="@{static/comments.js}"></script>
         <script src="http://code.jquery.com/jquery-3.4.1.js"> </script>
+        <script type="text/javascript" th:src="@{static/comments.js}"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
     </head>
     <body>
         <p th:text="${video.getName()}"></p>
         <video th:src="${video.getPath()}" controls></video>
         <div class="comments"></div>
-        <input id="comment" type="text"><br>
+        <input id="comment" type="text" required><br>
         <button type="button" onclick="addComment()">Добавить комментарий</button>
     </body>
 </html>
