@@ -11,15 +11,21 @@
     </head>
     <script type="text/javascript">
          function register() {
-            $.get("/register?nickname=" + document.getElementById("nickname").value + "&login=" + document.getElementById("login").value
-                + "&password=" + document.getElementById("password").value,
-                function(data){
-                    console.log(data);
-                    if (data != "") {
-                        location.href = "/";
-                    } else alert("This login already exist!");
-                }
-            );
+            if (document.getElementById("login").value.trim() === ""){
+                alert("Please enter login!");
+             } else if (document.getElementById("password").value.trim() === ""){
+                  alert("Please enter password!");
+            } else {
+                $.get("/register?nickname=" + document.getElementById("nickname").value + "&login=" + document.getElementById("login").value
+                    + "&password=" + document.getElementById("password").value,
+                    function(data){
+                        console.log(data);
+                        if (data != "") {
+                            location.href = "/";
+                        } else alert("This login already exist!");
+                    }
+                );
+             }
         }
     </script>
     <body>
