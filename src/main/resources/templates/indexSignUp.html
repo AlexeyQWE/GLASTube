@@ -3,6 +3,11 @@
     <head>
         <script src="http://code.jquery.com/jquery-3.4.1.js"> </script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"/>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+        <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
+        <link href="https://getbootstrap.com/docs/4.0/examples/signin/signin.css" rel="stylesheet" crossorigin="anonymous">
     </head>
     <script type="text/javascript">
          function register() {
@@ -10,19 +15,31 @@
                 + "&password=" + document.getElementById("password").value,
                 function(data){
                     console.log(data);
-                    location.href = "/sign_in";
+                    if (data != "") {
+                        location.href = "/";
+                    } else alert("This login already exist!");
                 }
-
             );
         }
     </script>
     <body>
-         <b>
-             <p align="center" th:text="${name}"> </p>
-          </b>
-        <br><br/><input id="nickname" type = "text"/> - nickname<br/>
-        <br><br/><input id="login" type = "text"/> - login<br/>
-        <br><br/><input id="password" type = "text"/> - password<br/>
-        <button type="button" onclick=register()>Sign Up</button>
+        <div class="container">
+            <form class="form-signin">
+                <h2 class="form-signin-heading">Please sign up</h2>
+                <p>
+                    <label class="sr-only">Nickname</label>
+                    <input id="nickname" class="form-control" type="text" placeholder="Nickname">
+                </p>
+                <p>
+                    <label class="sr-only">Login</label>
+                    <input id="login" class="form-control" type="text" placeholder="Login">
+                </p>
+                <p>
+                    <label class="sr-only">Password</label>
+                    <input id="password" class="form-control" type="password" placeholder="Password">
+                </p>
+                <button class="btn btn-lg btn-primary btn-block" type="button" onclick=register()>Sign up</button>
+            </form>
+        </div>
     </body>
 </html>

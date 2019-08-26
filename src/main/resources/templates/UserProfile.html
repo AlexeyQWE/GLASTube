@@ -1,0 +1,198 @@
+<!DOCTYPE>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <script src="http://code.jquery.com/jquery-3.4.1.js"> </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"/>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <meta charset="UTF-8">
+</head>
+<script type="text/javascript">
+        $(document).ready(function() {
+            $.get("/get_users",
+                function(data){
+                    var str = "<ul id=\"navAccordion\" class=\"navbar-nav mr-auto sidenav\">";
+                    for(var i = 0; i < data.length; i++) {
+                        str += "<li class=\"nav-item\">" +
+                               "<a class=\"nav-link\" href=\"/user_profile?login=" + data[i].login + "\">" +
+                               data[i].login + "</a></li>";
+                    }
+                    str += "</ul>";
+                    $(".users").html(str);
+                }
+            );
+        })
+        function signUp() {
+            location.href = '/sign_up';
+         }
+</script>
+<body>
+<nav class="navbar shadow-sm sticky-top" style="background-color:white;opacity:0.9">
+    <div class="container-fluid">
+        <div class="col">
+            <a class="navbar-brand" href="/">
+                <img src="logo.png"  width="35" height="35"/>
+            </a>
+        </div>
+        <div class="col">
+            <form>
+                <input class="form-inline" type="text" size="90" placeholder="Search video" aria-label="Search">
+            </form>
+        </div>
+        <div class="col">
+            <div class="dropdown open" style="margin-left:400">
+                <button class="navbar-toggler" type="button" id="dropdownMenuButton" data-toggle="dropdown"
+                        aria-haspopup="true" aria-expanded="false">
+                    <span class="dot" style="border:black" th:text="${login}"></span>
+                </button>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                    <a class="dropdown-item" onclick="signUp()">Sign out</a>
+                    <a class="dropdown-item" href="/signin_myprofile">My profile</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+<div class="blog">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-1" style="margin-left:-10px">
+                <nav class="navmenu navmenu-default" style="position:fixed;background-color:rgba(0,0,0,.03);font-size:0.9rem;">
+                    <a class="navbar-brand" style="margin-left:10;font-size:1rem">Пользователи сайта</a><br>
+                    <!-- Пункты вертикального меню -->
+                    <div class="users"></div>
+                </nav>
+            </div>
+            <div class="col" style="margin-top:100;margin-left:40px">
+                <h2><p th:text="${user}"></p></h2>
+                <div class="card">
+                    <div class="card-img">
+                        <img src="images/posts/polit.jpg" class="img-fluid">
+                    </div>
+
+                    <div class="card-body">
+                        <h4 class="card-title">Post Title</h4>
+                        <p class="card-text">
+                            text
+                        </p>
+                    </div>
+                    <div class="card-footer">
+                        <a href="/watch?id=1" class="card-link">Read more</a>
+                    </div>
+                </div>
+                <div class="card" style="margin-top:50">
+                    <div class="card-img">
+                        <img src="images/posts/imag2.jpg" class="img-fluid">
+                    </div>
+
+                    <div class="card-body">
+                        <h4 class="card-title">Post Title</h4>
+                        <p class="card-text">
+                            text
+                        </p>
+                    </div>
+                    <div class="card-footer">
+                        <a href="/watch?id=2" class="card-link">Read more</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col" style="margin-top:100">
+                <div class="card">
+                    <div class="card-img">
+                        <img src="images/posts/images.jpg" class="img-fluid">
+                    </div>
+
+                    <div class="card-body">
+                        <h4 class="card-title">Post Title</h4>
+                        <p class="card-text">
+                            text
+                        </p>
+                    </div>
+                    <div class="card-footer">
+                        <a href="/watch?id=3" class="card-link">Read more</a>
+                    </div>
+                </div>
+                <div class="card" style="margin-top:50">
+                    <div class="card-img">
+                        <img src="images/posts/imag2.jpg" class="img-fluid">
+                    </div>
+
+                    <div class="card-body">
+                        <h4 class="card-title">Post Title</h4>
+                        <p class="card-text">
+                            text
+                        </p>
+                    </div>
+                    <div class="card-footer">
+                        <a href="/watch?id=4" class="card-link">Read more</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col" style="margin-top:100">
+                <div class="card">
+                    <div class="card-img">
+                        <img src="images/posts/imag2.jpg" class="img-fluid">
+                    </div>
+
+                    <div class="card-body">
+                        <h4 class="card-title">Post Title</h4>
+                        <p class="card-text">
+                            text
+                        </p>
+                    </div>
+                    <div class="card-footer">
+                        <a href="/watch?id=5" class="card-link">Read more</a>
+                    </div>
+                </div>
+                <div class="card" style="margin-top:50">
+                    <div class="card-img">
+                        <img src="images/posts/imag2.jpg" class="img-fluid">
+                    </div>
+
+                    <div class="card-body">
+                        <h4 class="card-title">Post Title</h4>
+                        <p class="card-text">
+                            text
+                        </p>
+                    </div>
+                    <div class="card-footer">
+                        <a href="/watch?id=6" class="card-link">Read more</a>
+                    </div>
+                </div>
+                <div class="card" style="margin-top:50">
+                    <div class="card-img">
+                        <img src="images/posts/imag2.jpg" class="img-fluid">
+                    </div>
+
+                    <div class="card-body">
+                        <h4 class="card-title">Post Title</h4>
+                        <p class="card-text">
+                            text
+                        </p>
+                    </div>
+                    <div class="card-footer">
+                        <a href="/watch?id=6" class="card-link">Read more</a>
+                    </div>
+                </div>
+                <div class="card" style="margin-top:50">
+                    <div class="card-img">
+                        <img src="images/posts/imag2.jpg" class="img-fluid">
+                    </div>
+
+                    <div class="card-body">
+                        <h4 class="card-title">Post Title</h4>
+                        <p class="card-text">
+                            text
+                        </p>
+                    </div>
+                    <div class="card-footer">
+                        <a href="/watch?id=6" class="card-link">Read more</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
