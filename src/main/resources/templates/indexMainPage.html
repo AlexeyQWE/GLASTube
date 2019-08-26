@@ -22,9 +22,11 @@
                     $(".users").html(str);
                 }
             );
-        })
-        function signUp() {
-            location.href = '/sign_up';
+        });
+        function signOut() {
+            if (confirm("Выйти из аккаунта?")) {
+                location.href = '/';
+            }
         }
     </script>
     <body>
@@ -193,9 +195,5 @@
             </div>
         </div>
     </div>
-<!--        <div class="users"></div>-->
-<!--        <button type="button" onclick=allUsers()>Users List</button> <br>-->
-<!--        <button type="button" onclick=myVideos()>My videos</button>-->
-<!--        <button type="button" onclick="signOut()">Sign out</button>-->
     </body>
 </html>
