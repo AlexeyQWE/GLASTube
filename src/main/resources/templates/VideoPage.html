@@ -9,7 +9,7 @@
         <p th:text="${video.getName()}"></p>
         <video th:src="${video.getPath()}" controls></video>
         <div class="comments"></div>
-        <input id="comment" type="text" required><br>
-        <button type="button" onclick="addComment()">Добавить комментарий</button>
+        <input id="comment" type="text"><br>
+        <button type="submit" onclick="addComment()">Добавить комментарий</button>
     </body>
 </html>
