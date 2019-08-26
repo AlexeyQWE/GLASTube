@@ -15,7 +15,7 @@
                     var str = "<ul id=\"navAccordion\" class=\"navbar-nav mr-auto sidenav\">";
                     for(var i = 0; i < data.length; i++) {
                         str += "<li class=\"nav-item\">" +
-                               "<a class=\"nav-link\" href=\"#link-1\">" +
+                               "<a class=\"nav-link\" href=\"/user_profile?nickname=" + data[i].nickname + "\">" +
                                data[i].nickname + "</a></li>";
                     }
                     str += "</ul>";
@@ -68,6 +68,7 @@
                 </nav>
             </div>
             <div class="col" style="margin-top:100;margin-left:40px">
+                <h2><p th:text="${user}"></p></h2>
                 <div class="card">
                     <div class="card-img">
                         <img src="images/posts/polit.jpg" class="img-fluid">
