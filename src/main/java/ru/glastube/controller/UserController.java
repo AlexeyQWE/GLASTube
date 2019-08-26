@@ -87,5 +87,4 @@ public class UserController {
         model.setViewName("UserProfile");
         return model;
     }
-
 }
