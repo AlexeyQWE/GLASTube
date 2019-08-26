@@ -5,12 +5,15 @@ import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.StandardPasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import ru.glas***.entity.User;
 import ru.glas***.repository.UserRepository;
 
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -37,23 +40,50 @@ public class UserController {
         crudRep.findAll().forEach(users::add);
         return users;
     }
+
+    @RequestMapping("/newLogin")
+    public User newLogin(@RequestParam("newLogin") String newLogin, @RequestParam("login") String login) throws SQLException {
+        User user = crudRep.findByLogin(newLogin);
+
+        if (user != null) {
+            return null;
+        }
+        user = crudRep.findByLogin(login);
+        user.setLogin(newLogin);
+        return crudRep.save(user);
+    }
+
+    @RequestMapping("/newPassword")
+    public User newPassword(@RequestParam("newPassword") String newPassword, @RequestParam("Password") String oldPassword,
+         @RequestParam("login") String login) throws SQLException {
+        User user = crudRep.findByLogin(login);
+        System.out.println(oldPassword);
+
+        if (user != null && new StandardPasswordEncoder().matches(oldPassword, user.getPassword())) {
+            newPassword = new StandardPasswordEncoder().encode(newPassword);
+            user.setPassword(newPassword);
+            return crudRep.save(user);
+        }
+        return null;
+    }
+
     @RequestMapping(value = "/user_profile", method = RequestMethod.GET)
-    public ModelAndView userProfile(@RequestParam("nickname") String nickname) {
-        User user = crudRep.findByNickname(nickname);
+    public ModelAndView userProfile(@RequestParam("login") String login) {
+        User user = crudRep.findByLogin(login);
         ModelAndView model = new ModelAndView();
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         if (!(auth instanceof AnonymousAuthenticationToken)) {
             UserDetails userDetail = (UserDetails) auth.getPrincipal();
-            model.addObject("nickname", userDetail.getUsername());
+            model.addObject("login", userDetail.getUsername());
             model.addObject("signin_myprofile", "My profile");
             model.addObject("signout_signup", "Sign out");
             //return "Us";
         } else {
-            model.addObject("nickname", ".O.");
+            model.addObject("login", ".O.");
             model.addObject("signin_myprofile", "Sign in");
             model.addObject("signup_signout", "Sign up");
         }
-        model.addObject("user", user.getNickname());
+        model.addObject("user", user.getLogin());
         model.setViewName("UserProfile");
         return model;
     }
