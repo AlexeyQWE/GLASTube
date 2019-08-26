@@ -22,10 +22,10 @@ public class Comments {
     @Getter @Setter
     private Integer id_user;
     @Setter @Getter
-    private Date date;
+    private String date;
     @Getter @Setter
     private String text;
-    public Comments(Integer id_user, Date date, String text){
+    public Comments(Integer id_user, String date, String text){
         setId_user(id_user);
         setDate(date);
         setText(text);
