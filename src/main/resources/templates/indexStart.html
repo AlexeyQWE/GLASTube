@@ -15,8 +15,8 @@
                     var str = "<ul id=\"navAccordion\" class=\"navbar-nav mr-auto sidenav\">";
                     for(var i = 0; i < data.length; i++) {
                         str += "<li class=\"nav-item\">" +
-                               "<a class=\"nav-link\" href=\"/user_profile?nickname=" + data[i].nickname + "\">" +
-                               data[i].nickname + "</a></li>";
+                               "<a class=\"nav-link\" href=\"/user_profile?login=" + data[i].login + "\">" +
+                               data[i].login + "</a></li>";
                     }
                     str += "</ul>";
                     $(".users").html(str);
@@ -47,11 +47,12 @@
                 <div class="dropdown open" style="margin-left:400">
                     <button class="navbar-toggler" type="button" id="dropdownMenuButton" data-toggle="dropdown"
                             aria-haspopup="true" aria-expanded="false">
-                        <span class="dot" th:text="${username}"></span>
+                        <span class="dot" th:text="${login}"></span>
                     </button>
                     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                         <a class="dropdown-item" onclick="signUp()" th:text="${signup_signout}"></a>
                         <a class="dropdown-item" href="/signin_myprofile" th:text="${signin_myprofile}"></a>
+                        <a class="dropdown-item" href="/settings" th:text="${settings}"></a>
                     </div>
                 </div>
             </div>
