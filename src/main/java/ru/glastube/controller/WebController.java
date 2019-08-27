@@ -84,8 +84,6 @@ public class WebController {
 
     @RequestMapping("/sign_up")
     public String indexSignUp(Model model) {
-        model.addAttribute("name", "Sign Up");
-
         return "indexSignUp";
     }
 }
