@@ -1,6 +1,7 @@
 package ru.glastube.controller;
 
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -8,7 +9,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
+import ru.glastube.entity.Video;
 import ru.glastube.form.UploadForm;
+import ru.glastube.repository.VideoRepository;
 
 import java.io.File;
 import java.io.IOException;
@@ -22,15 +25,22 @@ public class FileController {
     // Windows: C:/Users/{user}/test
     private static String UPLOAD_DIR = System.getProperty("user.home") + "/GLASTube/video";
 
+    @Autowired
+    VideoRepository videoRep;
+
     @RequestMapping("/rest/uploadMultiFiles")
     public ResponseEntity<?> multiUploadFileModel(@ModelAttribute UploadForm form) {
 
-        System.out.println("Description:" + form.getDescription());
+        System.out.println("Name of the video:" + form.getDescription());
 
         String result = null;
         try {
 
             result = this.saveUploadedFiles(form.getFile());
+            String name = form.getDescription();
+            String filename = UPLOAD_DIR + "/" + form.getFile().getOriginalFilename();
+            Video video = new Video(name, "123", filename);
+            videoRep.save(video);
 
         }
         // Here Catch IOException only.
