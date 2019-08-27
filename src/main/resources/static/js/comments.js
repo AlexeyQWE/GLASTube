@@ -10,7 +10,7 @@ $(document).ready(function() {
 });
 
 function addComment(){
-    var text = document.getElementById("comment").value.trim();
+    var text = document.getElementById("comment").value;
     if (text.trim() === ""){
         alert("Заполните поле для ввода");
     } else {

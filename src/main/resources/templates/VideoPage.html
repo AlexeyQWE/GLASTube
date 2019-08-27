@@ -5,6 +5,11 @@
         <script type="text/javascript" th:src="@{static/js/comments.js}"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
     </head>
+    <style>
+        div{
+            white-space: pre;
+        }
+    </style>
     <body>
         <p th:text="${video.getName()}"></p>
         <video th:src="${video.getPath()}" controls></video>
