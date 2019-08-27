@@ -93,10 +93,4 @@ public class WebController {
 //        model.addAttribute("name", "Home Page");
 //        return "indexMainPage";
 //    }
-
-    @RequestMapping("/test")
-    public String test(Model model) {
-        model.addAttribute("comment",new Comments());
-        return "comments";
-    }
 }
