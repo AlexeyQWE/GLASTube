@@ -32,10 +32,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
 
-            http.authorizeRequests()
-            .antMatchers("/hello").permitAll()
-            .and()
-            .formLogin()
-            .defaultSuccessUrl("/");
+            http.csrf().disable();
+//            .authorizeRequests()
+//            .antMatchers("/hello").permitAll()
+//             .antMatchers("/rest/uploadMultiFiles").permitAll()
+//            .and()
+//            .formLogin()
+//            .defaultSuccessUrl("/");
     }
 }

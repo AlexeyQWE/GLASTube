@@ -42,4 +42,8 @@ public class VideoController {
         response.flushBuffer();
     }
 
+    @RequestMapping("/add_video")
+    public String addVideo() {
+        return "addVideo";
+    }
 }

@@ -87,16 +87,4 @@ public class WebController {
 
         return "indexSignUp";
     }
-
-//    @RequestMapping("/sign_in")
-//    public String indexMainPage(Model model) {
-//        model.addAttribute("name", "Home Page");
-//        return "indexMainPage";
-//    }
-
-    @RequestMapping("/test")
-    public String test(Model model) {
-        model.addAttribute("comment",new Comments());
-        return "comments";
-    }
 }
