@@ -7,7 +7,6 @@ import javax.persistence.*;
 @Entity
 public class Video {
 
-    //@GeneratedValue(strategy = GenerationType.AUTO)
     @Id@GeneratedValue(generator = "VIDEO_G", strategy = GenerationType.SEQUENCE)
     @SequenceGenerator(name = "VIDEO_G", sequenceName = "VIDEO_S", allocationSize = 1)
     @Getter @Setter private Integer id;
