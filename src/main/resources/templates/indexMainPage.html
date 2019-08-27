@@ -25,11 +25,12 @@
                 <div class="dropdown open" style="margin-left:400">
                     <button class="navbar-toggler" type="button" id="dropdownMenuButton" data-toggle="dropdown"
                             aria-haspopup="true" aria-expanded="false">
-                        <span class="dot" style="border:black" th:text="${nickname}"></span>
+                        <span class="dot" style="border:black" th:text="${login}"></span>
                     </button>
                     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                        <a class="dropdown-item" onclick="signUp()">Sign out</a>
+                        <a class="dropdown-item" href="/signup_signout">Sign out</a>
                         <a class="dropdown-item" href="/signin_myprofile">My profile</a>
+                        <a class="dropdown-item" href="/settings" th:text="${settings}"></a>
                     </div>
                 </div>
             </div>
