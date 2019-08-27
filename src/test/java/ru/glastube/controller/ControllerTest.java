@@ -57,7 +57,7 @@ public class ControllerTest {
 
     }
     @Test
-    public void SignUp() throws Exception {
+    public void signUp() throws Exception {
 
         String expected = "container";
 
