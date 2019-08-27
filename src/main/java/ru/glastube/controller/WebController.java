@@ -33,6 +33,22 @@ public class WebController {
         return model;
     }
 
+    @RequestMapping(value = "/signup_signout", method = RequestMethod.GET)
+    public ModelAndView signUpSignOut() {
+        ModelAndView model = new ModelAndView();
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        if (!(auth instanceof AnonymousAuthenticationToken)) {
+            UserDetails userDetail = (UserDetails) auth.getPrincipal();
+            model.addObject("login", userDetail.getUsername());
+            System.out.println(userDetail.getUsername());
+            model.setViewName("Login");
+            return model;
+        } else {
+            model.setViewName("indexSignUp");
+            return model;
+        }
+    }
+
     @RequestMapping(value = "/signin_myprofile", method = RequestMethod.GET)
     public ModelAndView signInMyProfile() {
         ModelAndView model = new ModelAndView();
@@ -48,6 +64,7 @@ public class WebController {
             return model;
         }
     }
+
     @RequestMapping(value = "/settings", method = RequestMethod.GET)
     public ModelAndView privatePage() {
         ModelAndView model = new ModelAndView();
