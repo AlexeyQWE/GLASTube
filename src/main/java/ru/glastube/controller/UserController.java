@@ -2,6 +2,8 @@ package ru.glastube.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -24,14 +26,15 @@ public class UserController {
     private UserRepository crudRep;
 
     @RequestMapping("/register")
-    public User register(@RequestParam("nickname") String nickname, @RequestParam("login") String login, @RequestParam("password") String password) {
+    public User register(@RequestParam("login") String login, @RequestParam("password") String password) {
         password = new StandardPasswordEncoder().encode(password);
         User user = crudRep.findByLogin(login);
 
         if (user != null) {
             return null;
         }
-        return crudRep.save(new User(nickname, login, password, 1));
+        user = new User(login, password, 1);
+        return crudRep.save(user);
     }
 
     @RequestMapping("/get_users")
