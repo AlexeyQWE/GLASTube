@@ -6,7 +6,7 @@ function newLogin() {
         $.get("/newLogin?newLogin=" + document.getElementById("newLogin").value + "&login=" + document.getElementById("user").innerText,
         function(data) {
             if (data != "") {
-                location.href = "/";
+                location.href = "/login";
             } else alert("This login already exist!");
         });
     }
@@ -22,7 +22,7 @@ function newPassword() {
                 + "&login=" + document.getElementById("user").innerText,
         function(data) {
             if (data != "") {
-                location.href = "/";
+                location.href = "/login";
             } else alert("Incorrect password!");
         });
     }
