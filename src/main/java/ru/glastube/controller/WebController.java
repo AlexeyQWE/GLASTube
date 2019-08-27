@@ -66,7 +66,7 @@ public class WebController {
     }
 
     @RequestMapping(value = "/settings", method = RequestMethod.GET)
-    public ModelAndView privatePage() {
+    public ModelAndView settings() {
         ModelAndView model = new ModelAndView();
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         if (!(auth instanceof AnonymousAuthenticationToken)) {
@@ -82,7 +82,7 @@ public class WebController {
     }
 
     @RequestMapping("/sign_up")
-    public String indexSignUp(Model model) {
+    public String signUp(Model model) {
         return "SignUpPage";
     }
 }
