@@ -44,7 +44,7 @@ public class WebController {
             model.setViewName("indexStart");
             return model;
         } else {
-            model.setViewName("indexSignUp");
+            model.setViewName("SignUpPage");
             return model;
         }
     }
@@ -73,8 +73,7 @@ public class WebController {
             UserDetails userDetail = (UserDetails) auth.getPrincipal();
             model.addObject("login", userDetail.getUsername());
             System.out.println(userDetail.getUsername());
-
-            model.setViewName("settings");
+            model.setViewName("SettingsPage");
             return model;
         } else {
             model.setViewName("Login");
@@ -84,6 +83,6 @@ public class WebController {
 
     @RequestMapping("/sign_up")
     public String indexSignUp(Model model) {
-        return "indexSignUp";
+        return "SignUpPage";
     }
 }
