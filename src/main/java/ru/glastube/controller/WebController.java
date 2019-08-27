@@ -9,7 +9,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
-import ru.glastube.entity.Comments;
 
 @Controller
 public class WebController {
@@ -38,13 +37,14 @@ public class WebController {
         ModelAndView model = new ModelAndView();
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         if (!(auth instanceof AnonymousAuthenticationToken)) {
-            UserDetails userDetail = (UserDetails) auth.getPrincipal();
-            model.addObject("login", userDetail.getUsername());
-            System.out.println(userDetail.getUsername());
-            model.setViewName("Login");
+            SecurityContextHolder.clearContext();
+            model.addObject("login", ".O.");
+            model.addObject("signin_myprofile", "Sign in");
+            model.addObject("signup_signout", "Sign up");
+            model.setViewName("indexStart");
             return model;
         } else {
-            model.setViewName("indexSignUp");
+            model.setViewName("SignUpPage");
             return model;
         }
     }
@@ -66,14 +66,14 @@ public class WebController {
     }
 
     @RequestMapping(value = "/settings", method = RequestMethod.GET)
-    public ModelAndView privatePage() {
+    public ModelAndView settings() {
         ModelAndView model = new ModelAndView();
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         if (!(auth instanceof AnonymousAuthenticationToken)) {
             UserDetails userDetail = (UserDetails) auth.getPrincipal();
             model.addObject("login", userDetail.getUsername());
             System.out.println(userDetail.getUsername());
-            model.setViewName("settings");
+            model.setViewName("SettingsPage");
             return model;
         } else {
             model.setViewName("Login");
@@ -82,9 +82,7 @@ public class WebController {
     }
 
     @RequestMapping("/sign_up")
-    public String indexSignUp(Model model) {
-        model.addAttribute("name", "Sign Up");
-
-        return "indexSignUp";
+    public String signUp(Model model) {
+        return "SignUpPage";
     }
 }
