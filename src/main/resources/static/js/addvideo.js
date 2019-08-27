@@ -20,6 +20,8 @@ function ajaxSubmitForm() {
 
     var data = new FormData(form);
 
+    var token = $("meta[name='_csrf']").attr("content");
+
 
     $("#submitButton").prop("disabled", true);
 
@@ -29,6 +31,7 @@ function ajaxSubmitForm() {
         type: "POST",
         enctype: 'multipart/form-data',
         url: "/rest/uploadMultiFiles",
+        headers: {"X-CSRF-TOKEN": token},
         data: data,
 
         // prevent jQuery from automatically transforming the data into a query string
