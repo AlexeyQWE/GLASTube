@@ -4,20 +4,50 @@
     <title>Upload Files</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script type="text/javascript" th:src="@{static/js/addvideo.js}"></script>
+    <meta th:name="${_csrf.parameterName}" th:content="${_csrf.token}"/>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"/>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 </head>
 <body>
-<h1>Uploading video</h1>
-<form method="POST" enctype="multipart/form-data" id="fileUploadForm">
-    Enter name of the video:<br/>
-    <input type="text" name="description" style="width:350px;"/>
-    <br/><br/>
-    File to upload: <input type="file" name="files"/><br />
-    <input type="submit" value="Submit" id="submitButton"/>
-</form>
-<h2>Upload Results:</h2>
-<div style="border:1px solid #ccc;padding: 5px;">
-    <span id="result"></span>
-</div>
-
+    <nav class="navbar shadow-sm sticky-top" style="background-color:white;opacity:0.9">
+        <div class="container-fluid">
+            <div class="col">
+                <a class="navbar-brand" href="/">
+                    <img src="logo.png"  width="35" height="35"/>
+                </a>
+            </div>
+            <div class="col">
+                <form>
+                    <input class="form-inline" type="text" size="90" placeholder="Search video" aria-label="Search">
+                </form>
+            </div>
+            <div class="col">
+                <div class="dropdown open" style="margin-left:400">
+                    <button class="navbar-toggler" type="button" id="dropdownMenuButton" data-toggle="dropdown"
+                            aria-haspopup="true" aria-expanded="false">
+                        <span class="dot" th:text="${login}"></span>
+                    </button>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        <a class="dropdown-item" href="/signup_signout" >Sign out</a>
+                        <a class="dropdown-item" href="/signin_myprofile">My profile</a>
+                        <a class="dropdown-item" href="/settings">Settings</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <h1>Uploading video</h1>
+    <form method="POST" enctype="multipart/form-data" id="fileUploadForm">
+        Enter name of the video:<br/>
+        <input type="text" name="description" style="width:350px;"/>
+        <br/><br/>
+        File to upload: <input type="file" name="files"/><br />
+        <input type="submit" value="Submit" id="submitButton"/>
+    </form>
+    <h2>Upload Results:</h2>
+    <div style="border:1px solid #ccc;padding: 5px;">
+        <span id="result"></span>
+    </div>
 </body>
 </html>
