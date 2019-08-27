@@ -49,6 +49,10 @@ public class UserController {
             return null;
         }
         user = crudRep.findByLogin(login);
+
+        if (user == null) {
+            return null;
+        }
         user.setLogin(newLogin);
         return crudRep.save(user);
     }
