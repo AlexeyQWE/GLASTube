@@ -28,14 +28,28 @@ public class VideoController {
     private VideoRepository crudRep;
 
     @RequestMapping("/watch")
-    public String VideoPage(@RequestParam("id") Integer id, Model model) {
+    public ModelAndView VideoPage(@RequestParam("id") Integer id) {
         /*List<User> users = new ArrayList<>();
         crudRep.findAll().forEach(crud -> {users.add(crud);});
         users.forEach(User::printInf);*/
         System.out.println(crudRep.findById(id).get());
-        model.addAttribute("video", crudRep.findById(id).get());
-
-        return "VideoPage";
+        //model.addAttribute("video", crudRep.findById(id).get());
+        ModelAndView model = new ModelAndView();
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        if (!(auth instanceof AnonymousAuthenticationToken)) {
+            UserDetails userDetail = (UserDetails) auth.getPrincipal();
+            model.addObject("login", userDetail.getUsername());
+            model.addObject("signin_myprofile", "My profile");
+            model.addObject("signout_signup", "Sign out");
+            model.setViewName("VideoPage");
+        } else {
+            model.addObject("login", ".O.");
+            model.addObject("signin_myprofile", "Sign in");
+            model.addObject("signup_signout", "Sign up");
+            model.setViewName("VideoPage");
+        }
+        model.addObject("video", crudRep.findById(id).get());
+        return model;
     }
 
     @RequestMapping(value="video/{filename:.+}", method= RequestMethod.GET)
@@ -56,10 +70,8 @@ public class VideoController {
             model.addObject("login", userDetail.getUsername());
             System.out.println(userDetail.getUsername());
             model.setViewName("addVideo");
-            //return model;
         } else {
             model.setViewName("Login");
-            //return model;
         }
         return model;
     }

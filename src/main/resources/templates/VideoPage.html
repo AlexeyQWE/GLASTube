@@ -9,12 +9,12 @@
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
     </head>
     <style>
-        div{
-            white-space: pre;
-        }
+<!--        div{-->
+<!--            white-space: pre;-->
+<!--        }-->
     </style>
     <body>
-        <nav class="navbar shadow-sm sticky-top" style="background-color:white;opacity:0.9">
+        <nav class="navbar shadow-sm sticky-top" style="background-color:white;opacity:0.9; margin-top:-110px">
             <div class="container-fluid">
                 <div class="col">
                     <a class="navbar-brand" href="/">
@@ -30,21 +30,23 @@
                     <div class="dropdown open" style="margin-left:400">
                         <button class="navbar-toggler" type="button" id="dropdownMenuButton" data-toggle="dropdown"
                                 aria-haspopup="true" aria-expanded="false">
-                            <span class="dot" th:text="${login}"></span>
+                            <span id="user" class="dot" th:text="${login}"></span>
                         </button>
                         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                            <a class="dropdown-item" href="/signup_signout" th:text="${signup_signout}"></a>
-                            <a class="dropdown-item" href="/signin_myprofile" th:text="${signin_myprofile}"></a>
-                            <a class="dropdown-item" href="/settings" th:text="${settings}"></a>
+                            <a class="dropdown-item" href="/signup_signout">Sign out</a>
+                            <a class="dropdown-item" href="/signin_myprofile">My profile</a>
+                            <a class="dropdown-item" href="/settings">Settings</a>
                         </div>
                     </div>
                 </div>
             </div>
         </nav>
-        <p th:text="${video.getName()}"></p>
-        <video th:src="${video.getPath()}" controls></video>
-        <div class="comments"></div>
-        <input id="comment" type="text"><br>
-        <button type="button" onclick="addComment()">Добавить комментарий</button>
+        <div class="conteiner" style="margin-top:150px">
+            <p th:text="${video.getName()}"></p>
+            <video th:src="${video.getPath()}" controls></video>
+            <div class="comments"></div>
+            <input id="comment" type="text"><br>
+            <button type="button" onclick="addComment()">Добавить комментарий</button>
+        </div>
     </body>
 </html>
