@@ -33,7 +33,7 @@ public class ControllerTest {
 
         String expected = "";
 
-        this.mockMvc.perform(get("http://localhost:8090/register?nickname=lexa&login=lex3221&password=qwerty")).andDo(print()).andExpect(status().isOk())
+        this.mockMvc.perform(get("http://localhost:8090/register?login=lex&password=qwerty")).andDo(print()).andExpect(status().isOk())
                 .andExpect(content().string(containsString(expected)));
 
     }
@@ -42,7 +42,7 @@ public class ControllerTest {
 
         String expected = "";
 
-        this.mockMvc.perform(get("http://localhost:8090/newLogin?newLogin=alex3212313&login=lex322")).andDo(print()).andExpect(status().isOk())
+        this.mockMvc.perform(get("http://localhost:8090/newLogin?newLogin=alex32&login=lex")).andDo(print()).andExpect(status().isOk())
                 .andExpect(content().string(containsString(expected)));
 
     }
@@ -52,7 +52,7 @@ public class ControllerTest {
 
         String expected = "";
 
-        this.mockMvc.perform(get("http://localhost:8090/newPassword?newPassword=qwerty&Password=qwe&login=lex")).andDo(print()).andExpect(status().isOk())
+        this.mockMvc.perform(get("http://localhost:8090/newPassword?newPassword=qwe&Password=qwerty&login=lex")).andDo(print()).andExpect(status().isOk())
                 .andExpect(content().string(containsString(expected)));
 
     }
@@ -62,15 +62,6 @@ public class ControllerTest {
         String expected = "container";
 
         this.mockMvc.perform(get("http://localhost:8090/sign_up")).andDo(print()).andExpect(status().isOk())
-                .andExpect(content().string(containsString(expected)));
-
-    }
-    @Test
-    public void comments() throws Exception {
-
-        String expected = "comments";
-
-        this.mockMvc.perform(get("http://localhost:8090/test")).andDo(print()).andExpect(status().isOk())
                 .andExpect(content().string(containsString(expected)));
 
     }
