@@ -7,9 +7,11 @@
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"/>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+        <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
+        <link href="https://getbootstrap.com/docs/4.0/examples/signin/signin.css" rel="stylesheet" crossorigin="anonymous">
     </head>
     <body>
-    <nav class="navbar shadow-sm sticky-top" style="background-color:white;opacity:0.9">
+    <nav class="navbar shadow-sm sticky-top" style="background-color:white;opacity:0.9; margin-top:-110px">
         <div class="container-fluid">
             <div class="col">
                 <a class="navbar-brand" href="/">
@@ -36,10 +38,21 @@
             </div>
         </div>
     </nav>
-        <br><br/><input id="newLogin" type = "text"/> - new login<br/>
-        <button type="button" onclick="newLogin()">Save new login</button><br/>
-        <br><br/><input id="oldPassword" type = "password"/> - old password
-        <br><br/><input id="newPassword" type = "password"/> - new password<br/>
-        <button type="button" onclick=newPassword()>Save new password</button>
+    <div class="container form-signin" style="margin-top:100px">
+        <h2 class="form-signin-heading">Settings</h2>
+        <br>
+        <p>
+            <input id="newLogin" class="form-control" type="text" placeholder="New login">
+        </p>
+        <button class="btn btn-lg btn-primary btn-block" type="button" onclick="newLogin()">Save new login</button>
+        <br>
+        <p>
+            <input id="oldPassword" class="form-control" type="password" placeholder="Old password">
+        </p>
+        <p>
+            <input id="newPassword" class="form-control" type="password" placeholder="New password">
+        </p>
+        <button class="btn btn-lg btn-primary btn-block" type="button" onclick="newPassword()">Save new password</button>
+    </div>
     </body>
 </html>

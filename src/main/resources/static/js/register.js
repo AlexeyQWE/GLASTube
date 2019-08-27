@@ -9,7 +9,7 @@ function register() {
         function(data) {
             console.log(data);
             if (data != "") {
-                location.href = "/";
+                location.href = "/login";
             } else alert("This login already exist!");
         });
     }
