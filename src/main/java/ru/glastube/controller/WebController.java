@@ -9,7 +9,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
-import ru.glas***.entity.Comments;
 
 @Controller
 public class WebController {
@@ -38,10 +37,11 @@ public class WebController {
         ModelAndView model = new ModelAndView();
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         if (!(auth instanceof AnonymousAuthenticationToken)) {
-            UserDetails userDetail = (UserDetails) auth.getPrincipal();
-            model.addObject("login", userDetail.getUsername());
-            System.out.println(userDetail.getUsername());
-            model.setViewName("Login");
+            SecurityContextHolder.clearContext();
+            model.addObject("login", ".O.");
+            model.addObject("signin_myprofile", "Sign in");
+            model.addObject("signup_signout", "Sign up");
+            model.setViewName("indexStart");
             return model;
         } else {
             model.setViewName("SignUpPage");
@@ -73,7 +73,7 @@ public class WebController {
             UserDetails userDetail = (UserDetails) auth.getPrincipal();
             model.addObject("login", userDetail.getUsername());
             System.out.println(userDetail.getUsername());
-            model.setViewName("SettingsPage");
+            model.setViewName("settings");
             return model;
         } else {
             model.setViewName("Login");
@@ -83,20 +83,6 @@ public class WebController {
 
     @RequestMapping("/sign_up")
     public String indexSignUp(Model model) {
-        model.addAttribute("name", "Sign Up");
-
-        return "SignUpPage";
-    }
-
-//    @RequestMapping("/sign_in")
-//    public String indexMainPage(Model model) {
-//        model.addAttribute("name", "Home Page");
-//        return "indexMainPage";
-//    }
-
-    @RequestMapping("/test")
-    public String test(Model model) {
-        model.addAttribute("comment",new Comments());
-        return "comments";
+        return "indexSignUp";
     }
 }

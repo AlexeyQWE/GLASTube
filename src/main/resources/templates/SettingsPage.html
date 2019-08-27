@@ -3,45 +3,15 @@
     <head>
         <script src="http://code.jquery.com/jquery-3.4.1.js"> </script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+        <script type="text/javascript" th:src="@{static/js/settings.js}"></script>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"/>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+        <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
+        <link href="https://getbootstrap.com/docs/4.0/examples/signin/signin.css" rel="stylesheet" crossorigin="anonymous">
     </head>
-    <script type="text/javascript">
-          function newLogin() {
-          console.log(document.getElementById("user").innerText);
-          if (document.getElementById("newLogin").value.trim() === ""){
-                alert("Please enter new login!");
-           } else {
-                $.get("/newLogin?newLogin=" + document.getElementById("newLogin").value + "&login=" + document.getElementById("user").innerText,
-                    function(data) {
-                        if (data != "") {
-                            location.href = "/";
-                        } else alert("This login already exist!");
-                    }
-                );
-            }
-        }
-        function newPassword() {
-          console.log(document.getElementById("user").innerText);
-           if (document.getElementById("oldPassword").value.trim() === ""){
-                 alert("Please enter current password!");
-           } else if (document.getElementById("newPassword").value.trim() === ""){
-                 alert("Please enter new password!");
-            } else {
-                $.get("/newPassword?newPassword=" + document.getElementById("newPassword").value + "&Password=" + document.getElementById("oldPassword").value
-                    + "&login=" + document.getElementById("user").innerText,
-                    function(data) {
-                        if (data != "") {
-                            location.href = "/";
-                        } else alert("Incorrect password!");
-                    }
-                );
-            }
-         }
-    </script>
     <body>
-    <nav class="navbar shadow-sm sticky-top" style="background-color:white;opacity:0.9">
+    <nav class="navbar shadow-sm sticky-top" style="background-color:white;opacity:0.9; margin-top:-110px">
         <div class="container-fluid">
             <div class="col">
                 <a class="navbar-brand" href="/">
@@ -60,18 +30,29 @@
                         <span id="user" class="dot" th:text="${login}"></span>
                     </button>
                     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                        <a class="dropdown-item" onclick="signUp()">Sign out</a>
+                        <a class="dropdown-item" href="/signup_signout">Sign out</a>
                         <a class="dropdown-item" href="/signin_myprofile">My profile</a>
-                        <a class="dropdown-item" href="/private_page" th:text="${private_page}"></a>
+                        <a class="dropdown-item" href="/settings">Settings</a>
                     </div>
                 </div>
             </div>
         </div>
     </nav>
-        <br><br/><input id="newLogin" type = "text"/> - new login<br/>
-        <button type="button" onclick="newLogin()">Save new login</button><br/>
-        <br><br/><input id="oldPassword" type = "password"/> - old password
-        <br><br/><input id="newPassword" type = "password"/> - new password<br/>
-        <button type="button" onclick=newPassword()>Save new password</button>
+    <div class="container form-signin" style="margin-top:100px">
+        <h2 class="form-signin-heading">Settings</h2>
+        <br>
+        <p>
+            <input id="newLogin" class="form-control" type="text" placeholder="New login">
+        </p>
+        <button class="btn btn-lg btn-primary btn-block" type="button" onclick="newLogin()">Save new login</button>
+        <br>
+        <p>
+            <input id="oldPassword" class="form-control" type="password" placeholder="Old password">
+        </p>
+        <p>
+            <input id="newPassword" class="form-control" type="password" placeholder="New password">
+        </p>
+        <button class="btn btn-lg btn-primary btn-block" type="button" onclick="newPassword()">Save new password</button>
+    </div>
     </body>
 </html>

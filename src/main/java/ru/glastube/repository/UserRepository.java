@@ -5,5 +5,4 @@ import ru.glas***.entity.User;
 
 public interface UserRepository extends CrudRepository <User, Integer> {
     User findByLogin(String login);
-    User findByNickname(String nickname);
 }
