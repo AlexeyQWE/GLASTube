@@ -1,41 +1,19 @@
-<!DOCTYPE>
-<html xmlns:th="http://www.thymeleaf.org">
+<!DOCTYPE html>
+<html>
     <head>
         <script src="http://code.jquery.com/jquery-3.4.1.js"> </script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+        <script type="text/javascript" th:src="@{static/js/register.js}"></script>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"/>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
         <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
         <link href="https://getbootstrap.com/docs/4.0/examples/signin/signin.css" rel="stylesheet" crossorigin="anonymous">
     </head>
-    <script type="text/javascript">
-         function register() {
-            if (document.getElementById("login").value.trim() === ""){
-                alert("Please enter login!");
-             } else if (document.getElementById("password").value.trim() === ""){
-                  alert("Please enter password!");
-            } else {
-                $.get("/register?nickname=" + document.getElementById("nickname").value + "&login=" + document.getElementById("login").value
-                    + "&password=" + document.getElementById("password").value,
-                    function(data){
-                        console.log(data);
-                        if (data != "") {
-                            location.href = "/";
-                        } else alert("This login already exist!");
-                    }
-                );
-             }
-        }
-    </script>
     <body>
         <div class="container">
             <form class="form-signin">
                 <h2 class="form-signin-heading">Please sign up</h2>
-                <p>
-                    <label class="sr-only">Nickname</label>
-                    <input id="nickname" class="form-control" type="text" placeholder="Nickname">
-                </p>
                 <p>
                     <label class="sr-only">Login</label>
                     <input id="login" class="form-control" type="text" placeholder="Login">
