@@ -36,10 +36,10 @@ public class FileController {
 
         String result = null;
         try {
-
-            result = this.saveUploadedFiles(form.getFile());
+            String hashFile = String.valueOf(new java.util.Date().hashCode());
+            result = this.saveUploadedFiles(form.getFile(), hashFile);
             String name = form.getDescription();
-            String filename = "video/" + form.getFile().getOriginalFilename();
+            String filename = "video/" + hashFile;
             Video video = new Video(name, "123", filename);
             videoRep.save(video);
 
@@ -56,7 +56,7 @@ public class FileController {
     }
 
     // Save Files
-    private String saveUploadedFiles(MultipartFile file) throws IOException {
+    private String saveUploadedFiles(MultipartFile file, String filename) throws IOException {
 
         // Make sure directory exists!
         File uploadDir = new File(UPLOAD_DIR);
@@ -66,7 +66,8 @@ public class FileController {
 
 
         if (!file.isEmpty()) {
-            String uploadFilePath = UPLOAD_DIR + "/" + file.getOriginalFilename();
+//            String filename = String.valueOf(new java.util.Date().hashCode());
+            String uploadFilePath = UPLOAD_DIR + "/" + filename;//file.getOriginalFilename();
 
             byte[] bytes = file.getBytes();
             Path path = Paths.get(uploadFilePath);
