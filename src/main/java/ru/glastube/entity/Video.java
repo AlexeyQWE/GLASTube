@@ -1,5 +1,6 @@
 package ru.glastube.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 import javax.persistence.*;
 import java.util.List;
@@ -13,10 +14,10 @@ public class Video {
     @Getter @Setter private Integer id;
     @Getter @Setter private String name;
     @ManyToOne (optional=false, cascade=CascadeType.ALL)
-    @JoinColumn (name="author")
+    @JoinColumn (name="author") @JsonIgnore
     @Getter @Setter private User author;
     @Getter @Setter private String path;
-    @OneToMany(mappedBy="video", fetch=FetchType.EAGER)
+    @OneToMany(mappedBy="video", fetch=FetchType.EAGER) @JsonIgnore
     @Getter @Setter private List<Comments> comments;
 
     public Video(String name, User author, String path) {
