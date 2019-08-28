@@ -18,6 +18,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.ArrayList;
 
 @RestController
 public class FileController {
@@ -38,7 +39,7 @@ public class FileController {
 
             result = this.saveUploadedFiles(form.getFile());
             String name = form.getDescription();
-            String filename = UPLOAD_DIR + "/" + form.getFile().getOriginalFilename();
+            String filename = "video/" + form.getFile().getOriginalFilename();
             Video video = new Video(name, "123", filename);
             videoRep.save(video);
 
