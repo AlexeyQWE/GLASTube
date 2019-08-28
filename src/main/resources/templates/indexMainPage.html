@@ -44,12 +44,12 @@
         </div>
     </nav>
     <div class="blog">
-        <div class="container-fluid">
+        <div class="container">
             <div class="row">
                 <button class="btn btn-lg btn-primary btn-block" type="button" onclick="addVideo()">Add new video</button>
             </div>
 
-            <div th:each="video : ${videos}" class="card">
+            <div th:each="video : ${videos}" class="card" >
                 <div class="card-img">
                     <video th:src="${video.getPath()}" class="img-fluid" width="400" height="300"></video>
                 </div>
