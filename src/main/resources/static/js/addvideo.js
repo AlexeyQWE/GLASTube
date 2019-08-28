@@ -1,17 +1,25 @@
 $(document).ready(function() {
 
-    $("#submitButton").click(function(event) {
-
-        // Stop default form Submit.
-        event.preventDefault();
-
-        // Call Ajax Submit.
-
-        ajaxSubmitForm();
-
-    });
-
 });
+
+function tmp() {
+
+//$("#submitButton").click(function(event) {
+        var text = document.getElementById("filename").value;
+        console.log("fvgbhjnk="+text);
+        if (text.trim() === ""){
+            alert("Заполните поле для ввода");
+        } else {
+            // Stop default form Submit.
+            event.preventDefault();
+
+            // Call Ajax Submit.
+
+            ajaxSubmitForm();
+        }
+//    });
+
+}
 
 function ajaxSubmitForm() {
 
@@ -22,6 +30,9 @@ function ajaxSubmitForm() {
 
     var token = $("meta[name='_csrf']").attr("content");
 
+    var uri_request = "/rest/uploadMultiFiles?login=" + document.getElementById("user").innerText;
+
+    console.log(uri_request);
 
     $("#submitButton").prop("disabled", true);
 
@@ -30,7 +41,7 @@ function ajaxSubmitForm() {
     $.ajax({
         type: "POST",
         enctype: 'multipart/form-data',
-        url: "/rest/uploadMultiFiles",
+        url: uri_request,
         headers: {"X-CSRF-TOKEN": token},
         data: data,
 
