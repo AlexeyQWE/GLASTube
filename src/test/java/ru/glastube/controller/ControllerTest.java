@@ -1,12 +1,24 @@
 package ru.glas***.controller;
 
+import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.security.authentication.AnonymousAuthenticationToken;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.authority.AuthorityUtils;
+import org.springframework.security.core.context.SecurityContext;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
+
+import java.io.IOException;
+
 import static org.hamcrest.CoreMatchers.containsString;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
@@ -56,6 +68,7 @@ public class ControllerTest {
                 .andExpect(content().string(containsString(expected)));
 
     }
+
     @Test
     public void signUp() throws Exception {
 
@@ -64,5 +77,65 @@ public class ControllerTest {
         this.mockMvc.perform(get("http://localhost:8090/sign_up")).andDo(print()).andExpect(status().isOk())
                 .andExpect(content().string(containsString(expected)));
 
+    }
+
+    @Test
+    public void indexStart() {
+        SecurityContext securityContext = SecurityContextHolder.createEmptyContext();
+        securityContext.setAuthentication(new AnonymousAuthenticationToken("key", "anonymousUser", AuthorityUtils.createAuthorityList("ROLE_ANONYMOUS")));
+        SecurityContextHolder.setContext(securityContext);
+        WebController webController = new WebController();
+        ModelAndView modelAndView =  webController.indexStart();
+        Assert.assertEquals("indexStart", modelAndView.getViewName());
+    }
+
+    @Test
+    public void signUpSignOut() {
+        SecurityContext securityContext = SecurityContextHolder.createEmptyContext();
+        securityContext.setAuthentication(new AnonymousAuthenticationToken("key", "anonymousUser", AuthorityUtils.createAuthorityList("ROLE_ANONYMOUS")));
+        SecurityContextHolder.setContext(securityContext);
+        WebController webController = new WebController();
+        ModelAndView modelAndView =  webController.signUpSignOut();
+        Assert.assertEquals("SignUpPage", modelAndView.getViewName());
+    }
+
+    @Test
+    public void signInMyProfile() {
+        SecurityContext securityContext = SecurityContextHolder.createEmptyContext();
+        securityContext.setAuthentication(new AnonymousAuthenticationToken("key", "anonymousUser", AuthorityUtils.createAuthorityList("ROLE_ANONYMOUS")));
+        SecurityContextHolder.setContext(securityContext);
+        WebController webController = new WebController();
+        ModelAndView modelAndView =  webController.signInMyProfile();
+        Assert.assertEquals("Login", modelAndView.getViewName());
+    }
+
+    @Test
+    public void settings() {
+        SecurityContext securityContext = SecurityContextHolder.createEmptyContext();
+        securityContext.setAuthentication(new AnonymousAuthenticationToken("key", "anonymousUser", AuthorityUtils.createAuthorityList("ROLE_ANONYMOUS")));
+        SecurityContextHolder.setContext(securityContext);
+        WebController webController = new WebController();
+        ModelAndView modelAndView =  webController.settings();
+        Assert.assertEquals("Login", modelAndView.getViewName());
+    }
+
+    @Test
+    public void VideoPage() {
+        SecurityContext securityContext = SecurityContextHolder.createEmptyContext();
+        securityContext.setAuthentication(new AnonymousAuthenticationToken("key", "anonymousUser", AuthorityUtils.createAuthorityList("ROLE_ANONYMOUS")));
+        SecurityContextHolder.setContext(securityContext);
+        VideoController videoController = new VideoController();
+        ModelAndView modelAndView =  videoController.VideoPage(1);
+        Assert.assertEquals("VideoPage", modelAndView.getViewName());
+    }
+
+    @Test
+    public void addVideo() {
+        SecurityContext securityContext = SecurityContextHolder.createEmptyContext();
+        securityContext.setAuthentication(new AnonymousAuthenticationToken("key", "anonymousUser", AuthorityUtils.createAuthorityList("ROLE_ANONYMOUS")));
+        SecurityContextHolder.setContext(securityContext);
+        VideoController videoController = new VideoController();
+        ModelAndView modelAndView =  videoController.addVideo();
+        Assert.assertEquals("Login", modelAndView.getViewName());
     }
 }

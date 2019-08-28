@@ -32,7 +32,7 @@ public class VideoController {
         /*List<User> users = new ArrayList<>();
         crudRep.findAll().forEach(crud -> {users.add(crud);});
         users.forEach(User::printInf);*/
-        System.out.println(crudRep.findById(id).get());
+       // System.out.println(crudRep.findById(id).get());
         //model.addAttribute("video", crudRep.findById(id).get());
         ModelAndView model = new ModelAndView();
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
