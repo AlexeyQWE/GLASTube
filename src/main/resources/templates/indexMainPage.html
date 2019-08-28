@@ -49,7 +49,7 @@
 
             <div th:each="video : ${videos}" class="card">
                 <div class="card-img">
-                    <video th:src="${video.getPath()}" class="img-fluid" width="400" height="300">
+                    <video th:src="${video.getPath()}" class="img-fluid" width="400" height="300"></video>
                 </div>
                 <div class="card-footer" width="400">
                     <a th:href="'/watch?id=' + ${video.getId()}" class="card-link" th:text="${video.getName()}"></a>
