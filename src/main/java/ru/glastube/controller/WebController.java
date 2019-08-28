@@ -1,5 +1,6 @@
 package ru.glastube.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -9,9 +10,13 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
+import ru.glastube.repository.VideoRepository;
 
 @Controller
 public class WebController {
+
+    @Autowired
+    private VideoRepository videoRep;
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public ModelAndView indexStart() {
@@ -28,6 +33,8 @@ public class WebController {
             model.addObject("signin_myprofile", "Sign in");
             model.addObject("signup_signout", "Sign up");
         }
+
+        model.addObject("videos", videoRep.findAll());
         model.setViewName("indexStart");
         return model;
     }
