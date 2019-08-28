@@ -11,8 +11,6 @@ public class Video {
 
     @GeneratedValue(strategy = GenerationType.TABLE)
     @Id
-    @OneToMany(mappedBy = "tags", fetch = FetchType.EAGER)
-    
     @Getter @Setter private Integer id;
     @Getter @Setter private String name;
     @Getter @Setter private String author;
