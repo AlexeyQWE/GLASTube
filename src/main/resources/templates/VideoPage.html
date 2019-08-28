@@ -18,7 +18,7 @@
             <div class="container-fluid">
                 <div class="col">
                     <a class="navbar-brand" href="/">
-                        <img src="logo.png"  width="35" height="35"/>
+                        <img th:src="@{static/image/logo.jpg}" height="35"/>
                     </a>
                 </div>
                 <div class="col">
@@ -33,9 +33,9 @@
                             <span id="user" class="dot" th:text="${login}"></span>
                         </button>
                         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                            <a class="dropdown-item" href="/signup_signout">Sign out</a>
-                            <a class="dropdown-item" href="/signin_myprofile">My profile</a>
-                            <a class="dropdown-item" href="/settings">Settings</a>
+                            <a class="dropdown-item" href="/signup_signout" th:text="${signup_signout}"></a>
+                            <a class="dropdown-item" href="/signin_myprofile" th:text="${signin_myprofile}"></a>
+                            <a class="dropdown-item" href="/settings" th:text="${settings}"></a>
                         </div>
                     </div>
                 </div>
