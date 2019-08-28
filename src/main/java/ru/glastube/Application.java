@@ -12,10 +12,7 @@ public class Application implements WebMvcConfigurer {
     private static final Logger log = Logger.getLogger(Application.class);
 
     public static void main(String[] args) {
-        log.info("Starting");
-        //log.debug("DEBUG");
-        //log.error("ERROR");
-        //log.warn("WARNING");
+        log.info("Server is working");
         SpringApplication.run(Application.class, args);
     }
 
