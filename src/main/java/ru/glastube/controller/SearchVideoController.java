@@ -49,7 +49,7 @@ public class SearchVideoController {
         for (Video video: crudRep.findAll()){
             if (video.getName().contains(text)) {
                 videos.add(video);
-                System.out.println(video.getName());
+//                System.out.println(video.getName());
             }
         }
 

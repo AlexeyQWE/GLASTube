@@ -6,6 +6,7 @@
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"/>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+        <script type="text/javascript" th:src="@{static/js/searchVideo.js}"></script>
         <meta charset="UTF-8">
     </head>
     <script type="text/javascript">
@@ -23,7 +24,8 @@
             </div>
             <div class="col">
                 <form>
-                    <input class="form-inline" type="text" size="90" placeholder="Search video" aria-label="Search">
+                    <input class="form-inline" id="textSearch" type="text" size="60" placeholder="Search video" aria-label="Search">
+                    <button type="button" onclick="searchVideo()">Search</button>
                 </form>
             </div>
             <div class="col">
