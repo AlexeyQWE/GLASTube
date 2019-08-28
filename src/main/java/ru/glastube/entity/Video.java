@@ -7,8 +7,8 @@ import javax.persistence.*;
 @Entity
 public class Video {
 
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Id
+    @Id@GeneratedValue(generator = "VIDEO_G", strategy = GenerationType.SEQUENCE)
+    @SequenceGenerator(name = "VIDEO_G", sequenceName = "VIDEO_S", allocationSize = 1)
     @Getter @Setter private Integer id;
     @Getter @Setter private String name;
     @Getter @Setter private String author;

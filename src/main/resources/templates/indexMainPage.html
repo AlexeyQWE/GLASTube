@@ -8,6 +8,11 @@
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
         <meta charset="UTF-8">
     </head>
+    <script type="text/javascript">
+        function addVideo() {
+            location.href = "/add_video";
+        }
+    </script>
     <body>
     <nav class="navbar shadow-sm sticky-top" style="background-color:white;opacity:0.9">
         <div class="container-fluid">
@@ -38,6 +43,9 @@
     </nav>
     <div class="blog">
         <div class="container-fluid">
+            <div class="row">
+                <button class="btn btn-lg btn-primary btn-block" type="button" onclick="addVideo()">Add new video</button>
+            </div>
             <div class="row">
                 <div class="col" style="margin-top:100;margin-left:40px">
                     <div class="card">
