@@ -11,11 +11,14 @@ $(document).ready(function() {
 
 function addComment(){
     var videoname = document.getElementById("videoname").innerText;
+    var login = document.getElementById("user").innerText;
     var text = document.getElementById("comment").value;
     if (text.trim() === ""){
-        alert("Заполните поле для ввода");
-    } else {
-        $.get("/add_comment?videoname=" + videoname + "&user=" + document.getElementById("user").innerText + "&text=" + text,function(data){
+        alert("Enter your commentary!");
+    }else if (login === ".O."){
+        alert("Please sing in!");
+    }else {
+        $.get("/add_comment?videoname=" + videoname + "&user=" + login + "&text=" + text,function(data){
             $.get("/all_comments?videoname=" + videoname, function(data){
                 var str = "";
                 for(var i = data.length - 1; i >= 0; i--) {
