@@ -2,6 +2,7 @@ package ru.glastube.entity;
 
 import lombok.*;
 import javax.persistence.*;
+import java.util.List;
 
 @NoArgsConstructor
 @Entity
@@ -15,6 +16,8 @@ public class Video {
     @JoinColumn (name="author")
     @Getter @Setter private User author;
     @Getter @Setter private String path;
+    @OneToMany(mappedBy="video", fetch=FetchType.EAGER)
+    @Getter @Setter private List<Comments> comments;
 
     public Video(String name, User author, String path) {
         this.name = name;
