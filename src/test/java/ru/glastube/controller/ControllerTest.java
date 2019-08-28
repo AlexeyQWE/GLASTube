@@ -3,26 +3,18 @@ package ru.glas***.controller;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.Authentication;
 import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
-import ru.glas***.repository.UserRepository;
 import ru.glas***.repository.VideoRepository;
-
-import java.io.IOException;
-
 import static org.hamcrest.CoreMatchers.containsString;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
@@ -85,15 +77,11 @@ public class ControllerTest {
 
     }
 
-   /* @Test
-    public void indexStart() {
-        SecurityContext securityContext = SecurityContextHolder.createEmptyContext();
-        securityContext.setAuthentication(new AnonymousAuthenticationToken("key", "anonymousUser", AuthorityUtils.createAuthorityList("ROLE_ANONYMOUS")));
-        SecurityContextHolder.setContext(securityContext);
-        WebController webController = new WebController();
-        ModelAndView modelAndView =  webController.indexStart();
-        Assert.assertEquals("indexStart", modelAndView.getViewName());
-    }*/
+    @Test
+    public void indexStart() throws Exception {
+        this.mockMvc.perform(get("http://localhost:8090/")).andDo(print()).andExpect(status().isOk())
+                .andExpect(content().string(containsString("Search")));
+    }
 
     @Test
     public void signUpSignOut() {
@@ -125,15 +113,10 @@ public class ControllerTest {
         Assert.assertEquals("Login", modelAndView.getViewName());
     }
 
-   /* /@Test
-    public void VideoPage() {
-        SecurityContext securityContext = SecurityContextHolder.createEmptyContext();
-        securityContext.setAuthentication(new AnonymousAuthenticationToken("key", "anonymousUser", AuthorityUtils.createAuthorityList("ROLE_ANONYMOUS")));
-        SecurityContextHolder.setContext(securityContext);
-        VideoController videoController = new VideoController();
-        ModelAndView modelAndView =  videoController.VideoPage(1);
-        Mockito.verify(crudRep).findById(1);
-        Assert.assertEquals("VideoPage", modelAndView.getViewName());
+   /* @Test
+    public void VideoPage() throws Exception {
+        this.mockMvc.perform(get("http://localhost:8090/watch?id=3")).andDo(print()).andExpect(status().isOk())
+                .andExpect(content().string(containsString("dropdownMenuButton")));
     }*/
 
     @Test
