@@ -4,13 +4,12 @@ package ru.glas***.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+import ru.glas***.entity.User;
 import ru.glas***.entity.Video;
 import ru.glas***.form.UploadForm;
+import ru.glas***.repository.UserRepository;
 import ru.glas***.repository.VideoRepository;
 
 import java.io.File;
@@ -27,10 +26,13 @@ public class FileController {
     private static String UPLOAD_DIR = System.getProperty("user.home") + "/GLASTube/video";
 
     @Autowired
+    UserRepository userRep;
+
+    @Autowired
     VideoRepository videoRep;
 
     @RequestMapping("/rest/uploadMultiFiles")
-    public ResponseEntity<?> multiUploadFileModel(@ModelAttribute UploadForm form) {
+    public ResponseEntity<?> multiUploadFileModel(@RequestParam("login") String login, @ModelAttribute UploadForm form) {
 
         System.out.println("Name of the video:" + form.getDescription());
 
@@ -40,7 +42,8 @@ public class FileController {
             result = this.saveUploadedFiles(form.getFile(), hashFile);
             String name = form.getDescription();
             String filename = "video/" + hashFile;
-            Video video = new Video(name, "123", filename);
+            User user = userRep.findByLogin(login);
+            Video video = new Video(name, user, filename);
             videoRep.save(video);
 
         }

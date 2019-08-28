@@ -41,9 +41,9 @@
     </nav>
     <div class="container form-signin" style="margin-top:100px">
         <h2 class="form-signin-heading">Uploading video</h2>
-        <form method="POST" enctype="multipart/form-data" id="fileUploadForm">
+        <form method="POST" enctype="multipart/form-data" id="fileUploadForm" onsubmit="tmp(); return false;">
             Enter name of the video:
-            <input class="form-control" type="text" name="description" style="width:350px;" placeholder="Name video"/>
+            <input id="filename" class="form-control" type="text" name="description" style="width:350px;" placeholder="Name video"/>
             <br>
             File to upload: <input type="file" name="files"/>
             <input class="btn btn-lg btn-primary btn-block" type="submit" value="Submit" id="submitButton" style="high:50px;width:100px"/>

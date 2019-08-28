@@ -2,6 +2,7 @@ package ru.glas***.entity;
 
 import lombok.*;;
 import javax.persistence.*;
+import java.util.List;
 
 @NoArgsConstructor
 @Entity
@@ -13,6 +14,8 @@ public class User {
     @Getter @Setter private String login;
     @Getter @Setter private String password;
     @Getter @Setter private Integer enabled;
+    @OneToMany(mappedBy="author", fetch=FetchType.EAGER)
+    @Getter @Setter private List<Video> videos;
 
     public User(String login, String password, Integer enabled) {
         this.login = login;
