@@ -7,8 +7,8 @@ import javax.persistence.*;
 @Entity
 public class User {
 
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Id
+    @Id@GeneratedValue(generator = "USER_G", strategy = GenerationType.SEQUENCE)
+    @SequenceGenerator(name = "USER_G", sequenceName = "USER_S", allocationSize = 1)
     @Getter @Setter private Integer id;
     @Getter @Setter private String login;
     @Getter @Setter private String password;

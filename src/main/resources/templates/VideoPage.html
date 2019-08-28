@@ -4,17 +4,49 @@
         <script src="http://code.jquery.com/jquery-3.4.1.js"> </script>
         <script type="text/javascript" th:src="@{static/js/comments.js}"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"/>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
     </head>
     <style>
-        div{
-            white-space: pre;
-        }
+<!--        div{-->
+<!--            white-space: pre;-->
+<!--        }-->
     </style>
     <body>
-        <p th:text="${video.getName()}"></p>
-        <video th:src="${video.getPath()}" controls></video>
-        <div class="comments"></div>
-        <input id="comment" type="text"><br>
-        <button type="button" onclick="addComment()">Добавить комментарий</button>
+        <nav class="navbar shadow-sm sticky-top" style="background-color:white;opacity:0.9; margin-top:-110px">
+            <div class="container-fluid">
+                <div class="col">
+                    <a class="navbar-brand" href="/">
+                        <img src="logo.png"  width="35" height="35"/>
+                    </a>
+                </div>
+                <div class="col">
+                    <form>
+                        <input class="form-inline" type="text" size="90" placeholder="Search video" aria-label="Search">
+                    </form>
+                </div>
+                <div class="col">
+                    <div class="dropdown open" style="margin-left:400">
+                        <button class="navbar-toggler" type="button" id="dropdownMenuButton" data-toggle="dropdown"
+                                aria-haspopup="true" aria-expanded="false">
+                            <span id="user" class="dot" th:text="${login}"></span>
+                        </button>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                            <a class="dropdown-item" href="/signup_signout">Sign out</a>
+                            <a class="dropdown-item" href="/signin_myprofile">My profile</a>
+                            <a class="dropdown-item" href="/settings">Settings</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </nav>
+        <div class="conteiner" style="margin-top:150px">
+            <p th:text="${video.getName()}"></p>
+            <video th:src="${video.getPath()}" controls></video>
+            <div class="comments"></div>
+            <input id="comment" type="text"><br>
+            <button type="button" onclick="addComment()">Добавить комментарий</button>
+        </div>
     </body>
 </html>
