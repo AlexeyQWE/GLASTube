@@ -7,11 +7,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import ru.glas***.entity.Video;
 import ru.glas***.repository.VideoRepository;
@@ -20,9 +16,10 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.Optional;
+import java.util.ArrayList;
+import java.util.List;
 
-@Controller
+@RestController
 public class VideoController {
     @Autowired
     private VideoRepository crudRep;
@@ -74,5 +71,21 @@ public class VideoController {
             model.setViewName("Login");
         }
         return model;
+    }
+
+    @RequestMapping("/all_video")
+    public List<Video> allVideo() {
+        List<Video> videos = new ArrayList<>();
+//        crudRep.findAll().forEach(videos::add);
+        if (crudRep.count() <= 5) {
+            for (long i = crudRep.count(); i >= 1; i--) {
+                videos.add(crudRep.findById((int) i).get());
+            }
+        } else {
+            for (long i = crudRep.count(); i >= crudRep.count() - 5; i--) {
+                videos.add(crudRep.findById((int) i).get());
+            }
+        }
+        return videos;
     }
 }
