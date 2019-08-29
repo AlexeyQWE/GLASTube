@@ -1,19 +1,12 @@
 package ru.glas***.controller;
 
-import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.boot.test.mock.mockito.MockBean;
-import org.springframework.security.authentication.AnonymousAuthenticationToken;
-import org.springframework.security.core.authority.AuthorityUtils;
-import org.springframework.security.core.context.SecurityContext;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.web.servlet.ModelAndView;
 import ru.glas***.repository.VideoRepository;
 import static org.hamcrest.CoreMatchers.containsString;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
@@ -30,7 +23,6 @@ public class ControllerTest {
     private UserController controller;
     @Autowired
     private MockMvc mockMvc;
-    @MockBean
     private VideoRepository crudRep;
 
     @Test
@@ -45,7 +37,6 @@ public class ControllerTest {
 
         this.mockMvc.perform(get("http://localhost:8090/register?login=lex&password=qwerty")).andDo(print()).andExpect(status().isOk())
                 .andExpect(content().string(containsString(expected)));
-
     }
     @Test
     public void newLogin() throws Exception {
@@ -54,7 +45,6 @@ public class ControllerTest {
 
         this.mockMvc.perform(get("http://localhost:8090/newLogin?newLogin=alex32&login=lex")).andDo(print()).andExpect(status().isOk())
                 .andExpect(content().string(containsString(expected)));
-
     }
 
     @Test
@@ -64,7 +54,6 @@ public class ControllerTest {
 
         this.mockMvc.perform(get("http://localhost:8090/newPassword?newPassword=qwe&Password=qwerty&login=lex")).andDo(print()).andExpect(status().isOk())
                 .andExpect(content().string(containsString(expected)));
-
     }
 
     @Test
@@ -74,7 +63,6 @@ public class ControllerTest {
 
         this.mockMvc.perform(get("http://localhost:8090/sign_up")).andDo(print()).andExpect(status().isOk())
                 .andExpect(content().string(containsString(expected)));
-
     }
 
     @Test
@@ -84,48 +72,33 @@ public class ControllerTest {
     }
 
     @Test
-    public void signUpSignOut() {
-        SecurityContext securityContext = SecurityContextHolder.createEmptyContext();
-        securityContext.setAuthentication(new AnonymousAuthenticationToken("key", "anonymousUser", AuthorityUtils.createAuthorityList("ROLE_ANONYMOUS")));
-        SecurityContextHolder.setContext(securityContext);
-        WebController webController = new WebController();
-        ModelAndView modelAndView =  webController.signUpSignOut();
-        Assert.assertEquals("SignUpPage", modelAndView.getViewName());
+    public void signUpSignOut() throws Exception {
+        this.mockMvc.perform(get("http://localhost:8090/signup_signout")).andDo(print()).andExpect(status().isOk())
+                .andExpect(content().string(containsString("Please sign up")));
+
     }
 
     @Test
-    public void signInMyProfile() {
-        SecurityContext securityContext = SecurityContextHolder.createEmptyContext();
-        securityContext.setAuthentication(new AnonymousAuthenticationToken("key", "anonymousUser", AuthorityUtils.createAuthorityList("ROLE_ANONYMOUS")));
-        SecurityContextHolder.setContext(securityContext);
-        WebController webController = new WebController();
-        ModelAndView modelAndView =  webController.signInMyProfile();
-        Assert.assertEquals("Login", modelAndView.getViewName());
+    public void signInMyProfile() throws Exception {
+        this.mockMvc.perform(get("http://localhost:8090/signin_myprofile")).andDo(print()).andExpect(status().isOk())
+                .andExpect(content().string(containsString("ready")));
     }
 
     @Test
-    public void settings() {
-        SecurityContext securityContext = SecurityContextHolder.createEmptyContext();
-        securityContext.setAuthentication(new AnonymousAuthenticationToken("key", "anonymousUser", AuthorityUtils.createAuthorityList("ROLE_ANONYMOUS")));
-        SecurityContextHolder.setContext(securityContext);
-        WebController webController = new WebController();
-        ModelAndView modelAndView =  webController.settings();
-        Assert.assertEquals("Login", modelAndView.getViewName());
+    public void settings() throws Exception {
+        this.mockMvc.perform(get("http://localhost:8090/settings")).andDo(print()).andExpect(status().isOk())
+                .andExpect(content().string(containsString("ready")));
     }
 
-   /* @Test
-    public void VideoPage() throws Exception {
-        this.mockMvc.perform(get("http://localhost:8090/watch?id=3")).andDo(print()).andExpect(status().isOk())
-                .andExpect(content().string(containsString("dropdownMenuButton")));
-    }*/
+    @Test
+    public void addVideo() throws Exception {
+        this.mockMvc.perform(get("http://localhost:8090/add_video")).andDo(print()).andExpect(status().isOk())
+                .andExpect(content().string(containsString("ready")));
+    }
 
     @Test
-    public void addVideo() {
-        SecurityContext securityContext = SecurityContextHolder.createEmptyContext();
-        securityContext.setAuthentication(new AnonymousAuthenticationToken("key", "anonymousUser", AuthorityUtils.createAuthorityList("ROLE_ANONYMOUS")));
-        SecurityContextHolder.setContext(securityContext);
-        VideoController videoController = new VideoController();
-        ModelAndView modelAndView =  videoController.addVideo();
-        Assert.assertEquals("Login", modelAndView.getViewName());
+    public void SearchPage() throws Exception {
+        this.mockMvc.perform(get("http://localhost:8090/resultSearch?text=lol")).andDo(print()).andExpect(status().isOk())
+                .andExpect(content().string(containsString("Search video")));
     }
 }
