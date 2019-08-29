@@ -23,22 +23,6 @@ public class SearchVideoController {
     @Autowired
     private VideoRepository crudRep;
 
-//    @RequestMapping("/resultSearch")
-//    public List<Video> searchVideo(@RequestParam("text") String text, Model model){
-//        int a = 0;
-//        List<Video> videos = new ArrayList<>();
-//        System.out.println(videos.size());
-//        for (Video video: crudRep.findAll()){
-//            a = 1;
-//            if (video.getName().contains(text)) {
-//                videos.add(video);
-//                System.out.println(video.getName());
-//            }
-//        }
-//        if (a == 0) {model.addAttribute("notFound",a);}
-//        return videos;
-//    }
-
     @RequestMapping(value = "/resultSearch", method = RequestMethod.GET)
     public ModelAndView SearchPage(@RequestParam("text") String text) {
         ModelAndView model = new ModelAndView();
@@ -49,7 +33,6 @@ public class SearchVideoController {
         for (Video video: crudRep.findAll()){
             if (video.getName().contains(text)) {
                 videos.add(video);
-//                System.out.println(video.getName());
             }
         }
 
