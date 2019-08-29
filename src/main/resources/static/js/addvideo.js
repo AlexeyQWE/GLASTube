@@ -52,7 +52,7 @@ function ajaxSubmitForm() {
         timeout: 1000000,
         success: function(data, textStatus, jqXHR) {
 
-            $("#result").html(data);
+            $("#result").html("Video uploaded successfully!");
             console.log("SUCCESS : ", data);
             $("#submitButton").prop("disabled", false);
             $('#fileUploadForm')[0].reset();
