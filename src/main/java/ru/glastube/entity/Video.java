@@ -25,4 +25,5 @@ public class Video {
         this.author = author;
         this.path = path;
     }
+
 }

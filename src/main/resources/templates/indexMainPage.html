@@ -6,6 +6,7 @@
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"/>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+        <script type="text/javascript" th:src="@{static/js/searchVideo.js}"></script>
         <meta charset="UTF-8">
     </head>
     <script type="text/javascript">
@@ -18,12 +19,13 @@
         <div class="container-fluid">
             <div class="col">
                 <a class="navbar-brand" href="/">
-                    <img th:src="@{static/image/logo.jpg}" height="35"/>
+                    <img th:src="@{static/image/logo.png}" height="35"/>
                 </a>
             </div>
             <div class="col">
                 <form>
-                    <input class="form-inline" type="text" size="90" placeholder="Search video" aria-label="Search">
+                    <input class="form-inline" id="textSearch" type="text" size="60" placeholder="Search video" aria-label="Search">
+                    <button type="button" onclick="searchVideo()">Search</button>
                 </form>
             </div>
             <div class="col">
@@ -42,136 +44,17 @@
         </div>
     </nav>
     <div class="blog">
-        <div class="container-fluid">
+        <div class="container">
             <div class="row">
                 <button class="btn btn-lg btn-primary btn-block" type="button" onclick="addVideo()">Add new video</button>
             </div>
-            <div class="row">
-                <div class="col" style="margin-top:100;margin-left:40px">
-                    <div class="card">
-                        <div class="card-img">
-                            <img src="images/posts/polit.jpg" class="img-fluid">
-                        </div>
 
-                        <div class="card-body">
-                            <h4 class="card-title">Post Title</h4>
-                            <p class="card-text">
-                                text
-                            </p>
-                        </div>
-                        <div class="card-footer">
-                            <a href="/watch?id=1" class="card-link">Read more</a>
-                        </div>
-                    </div>
-                    <div class="card" style="margin-top:50">
-                        <div class="card-img">
-                            <img src="images/posts/imag2.jpg" class="img-fluid">
-                        </div>
-
-                        <div class="card-body">
-                            <h4 class="card-title">Post Title</h4>
-                            <p class="card-text">
-                                text
-                            </p>
-                        </div>
-                        <div class="card-footer">
-                            <a href="/watch?id=2" class="card-link">Read more</a>
-                        </div>
-                    </div>
+            <div th:each="video : ${videos}" class="card" >
+                <div class="card-img">
+                    <video th:src="${video.getPath()}" class="img-fluid" width="400" height="300"></video>
                 </div>
-                <div class="col" style="margin-top:100">
-                    <div class="card">
-                        <div class="card-img">
-                            <img src="images/posts/images.jpg" class="img-fluid">
-                        </div>
-
-                        <div class="card-body">
-                            <h4 class="card-title">Post Title</h4>
-                            <p class="card-text">
-                                text
-                            </p>
-                        </div>
-                        <div class="card-footer">
-                            <a href="/watch?id=3" class="card-link">Read more</a>
-                        </div>
-                    </div>
-                    <div class="card" style="margin-top:50">
-                        <div class="card-img">
-                            <img src="images/posts/imag2.jpg" class="img-fluid">
-                        </div>
-
-                        <div class="card-body">
-                            <h4 class="card-title">Post Title</h4>
-                            <p class="card-text">
-                                text
-                            </p>
-                        </div>
-                        <div class="card-footer">
-                            <a href="/watch?id=4" class="card-link">Read more</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col" style="margin-top:100">
-                    <div class="card">
-                        <div class="card-img">
-                            <img src="images/posts/imag2.jpg" class="img-fluid">
-                        </div>
-
-                        <div class="card-body">
-                            <h4 class="card-title">Post Title</h4>
-                            <p class="card-text">
-                                text
-                            </p>
-                        </div>
-                        <div class="card-footer">
-                            <a href="/watch?id=5" class="card-link">Read more</a>
-                        </div>
-                    </div>
-                    <div class="card" style="margin-top:50">
-                        <div class="card-img">
-                            <img src="images/posts/imag2.jpg" class="img-fluid">
-                        </div>
-
-                        <div class="card-body">
-                            <h4 class="card-title">Post Title</h4>
-                            <p class="card-text">
-                                text
-                            </p>
-                        </div>
-                        <div class="card-footer">
-                            <a href="/watch?id=6" class="card-link">Read more</a>
-                        </div>
-                    </div>
-                    <div class="card" style="margin-top:50">
-                        <div class="card-img">
-                            <img src="images/posts/imag2.jpg" class="img-fluid">
-                        </div>
-
-                        <div class="card-body">
-                            <h4 class="card-title">Post Title</h4>
-                            <p class="card-text">
-                                text
-                            </p>
-                        </div>
-                        <div class="card-footer">
-                            <a href="/watch?id=6" class="card-link">Read more</a>
-                        </div>
-                    </div>
-                    <div class="card" style="margin-top:50">
-                        <div class="card-img">
-                            <img src="images/posts/imag2.jpg" class="img-fluid">
-                        </div>
-
-                        <div class="card-body">
-                            <h4 class="card-title">Post Title</h4>
-                            <p class="card-text">
-                                text
-                            </p>
-                        </div>
-                        <div class="card-footer">
-                            <a href="/watch?id=6" class="card-link">Read more</a>
-                        </div>
-                    </div>
+                <div class="card-footer" width="400">
+                    <a th:href="'/watch?id=' + ${video.getId()}" class="card-link" th:text="${video.getName()}"></a>
                 </div>
             </div>
         </div>
