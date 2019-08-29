@@ -26,11 +26,6 @@ public class VideoController {
 
     @RequestMapping("/watch")
     public ModelAndView VideoPage(@RequestParam("id") Integer id) {
-        /*List<User> users = new ArrayList<>();
-        crudRep.findAll().forEach(crud -> {users.add(crud);});
-        users.forEach(User::printInf);*/
-       // System.out.println(crudRep.findById(id).get());
-        //model.addAttribute("video", crudRep.findById(id).get());
         ModelAndView model = new ModelAndView();
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         if (!(auth instanceof AnonymousAuthenticationToken)) {
@@ -76,7 +71,6 @@ public class VideoController {
     @RequestMapping("/all_video")
     public List<Video> allVideo() {
         List<Video> videos = new ArrayList<>();
-//        crudRep.findAll().forEach(videos::add);
         if (crudRep.count() <= 5) {
             for (long i = crudRep.count(); i >= 1; i--) {
                 videos.add(crudRep.findById((int) i).get());
