@@ -1,5 +1,4 @@
 language: java
-jdk: OpenJDK
 install: gradle
 script:
   - gradle build
