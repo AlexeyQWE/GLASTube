@@ -28,12 +28,8 @@ public class CommentsController {
         Integer id = videoRep.findByName(videoname).getId();
         Video v = videoRep.findById(id).get();
         List<Comments> comments = v.getComments();
-        return comments;//.forEach(el -> System.out.println(el.getText()));
-//        List<Comments> cms = new ArrayList<>();
-//        System.out.println(id);
-//        commentRepository.findAllByVideo(id);//.forEach(cms::add);
-//        return cms;
-//        return null;
+        return comments;
+
     }
 
     @RequestMapping("/add_comment")
