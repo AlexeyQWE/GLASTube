@@ -1,4 +1,4 @@
-package ru.glas***.entity;
+package ru.glastube.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;

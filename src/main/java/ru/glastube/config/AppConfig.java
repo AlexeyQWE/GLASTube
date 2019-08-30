@@ -1,4 +1,4 @@
-package ru.glas***.config;
+package ru.glastube.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;

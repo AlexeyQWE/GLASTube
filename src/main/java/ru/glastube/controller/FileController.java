@@ -1,4 +1,4 @@
-package ru.glas***.controller;
+package ru.glastube.controller;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -6,18 +6,16 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
-import ru.glas***.entity.User;
-import ru.glas***.entity.Video;
-import ru.glas***.form.UploadForm;
-import ru.glas***.repository.UserRepository;
-import ru.glas***.repository.VideoRepository;
-
+import ru.glastube.entity.User;
+import ru.glastube.entity.Video;
+import ru.glastube.form.UploadForm;
+import ru.glastube.repository.UserRepository;
+import ru.glastube.repository.VideoRepository;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.ArrayList;
 
 @RestController
 public class FileController {

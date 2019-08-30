@@ -1,4 +1,4 @@
-package ru.glas***.form;
+package ru.glastube.form;
 
 import org.springframework.web.multipart.MultipartFile;
 

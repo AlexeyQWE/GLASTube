@@ -1,4 +1,4 @@
-package ru.glas***.entity;
+package ru.glastube.entity;
 
 import lombok.*;;
 import javax.persistence.*;

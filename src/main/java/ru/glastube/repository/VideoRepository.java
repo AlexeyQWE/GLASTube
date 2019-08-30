@@ -1,8 +1,8 @@
-package ru.glas***.repository;
+package ru.glastube.repository;
 
 import org.springframework.data.repository.CrudRepository;
-import ru.glas***.entity.User;
-import ru.glas***.entity.Video;
+import ru.glastube.entity.User;
+import ru.glastube.entity.Video;
 
 import java.util.List;
 

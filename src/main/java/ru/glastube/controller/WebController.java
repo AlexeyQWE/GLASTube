@@ -1,4 +1,4 @@
-package ru.glas***.controller;
+package ru.glastube.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
@@ -10,12 +10,10 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
-import ru.glas***.entity.User;
-import ru.glas***.entity.Video;
-import ru.glas***.repository.UserRepository;
-import ru.glas***.repository.VideoRepository;
-
-import java.util.ArrayList;
+import ru.glastube.entity.User;
+import ru.glastube.entity.Video;
+import ru.glastube.repository.UserRepository;
+import ru.glastube.repository.VideoRepository;
 import java.util.List;
 
 @Controller

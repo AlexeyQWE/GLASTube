@@ -1,17 +1,13 @@
-package ru.glas***.controller;
+package ru.glastube.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-import ru.glas***.entity.Comments;
-import ru.glas***.entity.Video;
-import ru.glas***.repository.CommentRepository;
-import ru.glas***.repository.VideoRepository;
-
-import java.util.ArrayList;
-import java.util.Date;
+import ru.glastube.entity.Comments;
+import ru.glastube.entity.Video;
+import ru.glastube.repository.CommentRepository;
+import ru.glastube.repository.VideoRepository;
 import java.util.List;
 
 @RestController
